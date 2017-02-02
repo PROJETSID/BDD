@@ -1,0 +1,46 @@
+<!-- Ce mastermind a été réaliser par David De Groote (dadg@freesurf.ch), apprenti informaticien à l'EHMP
+	Infographie, Bertrand Dubuis (bertranddubuis@hotmail.com) -->
+<html>
+<head>
+<title>Mastermind</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<!--Intégration de mastermind.js dans la page -->
+<script language="JavaScript" src="mastermind.js"></script>
+<style>
+body {
+font:18px Verdana; font-weight: bold;color:#000000;
+}
+</style>
+
+<body background="fond.gif" vlink="#999999" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<table width="100%" height="100%" border="0" cellpadding="5" cellspacing="0">
+	<tr>
+		<td align="center">
+			<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td align="center"><img src="titre.gif"></td></td>
+				</tr>
+  				<tr>
+  					<td align="center">
+						<table width="360" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#000000">
+  							<tr>
+    							<td align="center" bgcolor="#FFFFFF">
+								<script language="JavaScript">
+									//Création d'un nouveau mastermind ainsi
+									//new Mastermind(nbcolonnes, nblignes, nbcouleurs, nomvariable)
+									//Passage du nom de la variable pour rappel de méthode depuis page html
+									MonMastermind = new Mastermind(4, 9, 4, "MonMastermind");							
+								</script></td>
+  							</tr>
+						</table>
+					</td>
+				</tr>
+  			</table>
+		</td>
+	</tr>
+ </table>
+  
+</body>
+</html>
