@@ -1,0 +1,34 @@
+#conteneur
+
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.menu_choix_1 {
+	background-color: red;
+	width: 20%;
+	height: 40px;
+	text-align: center;
+}
+.menu_choix_2 {
+	background-color: blue;
+	width: 20%;
+	height: 40px;
+	text-align: center;
+}
+.menu_choix_3 {
+	background-color: green;
+	width: 20%;
+	height: 40px;
+	text-align: center;
+}
+#espace_de_jeu
+{
+	margin-top: 20px;
+	background-color: orange;
+	width: 50%;
+	height: 600px;
+	align-self: center;
+}
