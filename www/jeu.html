@@ -1,0 +1,634 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+
+  <TITLE>Play Mastermind Game Online</TITLE>
+
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+
+  <meta name="description" content="Mastermind,Interactive game,Free mastermind game,Online game.Articles and news about love, dating, singles.">
+  <meta name="keywords" content="mastermind, free games, online games, interactive games, strategy games, bulls, cows.Singles,Love,Dating">
+
+  <link rel="stylesheet" type="text/css" href="css/default.css">
+  <link rel="stylesheet" type="text/css" href="css/mm.css">
+
+  <script type="text/javascript">
+    var GameTable;
+    var cur1,cur2,cur3,cur4,cur5,cur6,cur7,cur8;
+    var imagesPath = 'imagesPath';
+    var currMouseValue = 'X';
+    var maxMouseValue = '6';
+    var num_colors = 8;
+    var code_length = 4;
+    var curr_attempt = 0;
+    var num_attempts = 0;
+    var num_bulls =0;
+    var num_cows =0;
+    var game_ended =0;
+    var allow_duplicates =0;
+
+    function InitGame()
+    {
+      GameTable = document.getElementById("GameTable"); 
+
+      maxMouseValue = document.getElementById("NumColors").value;
+
+      val = document.getElementById("NumColors").value;
+      num_colors = parseInt(val);     
+
+      val = document.getElementById("CodeLength").value;
+      code_length = parseInt(val);
+
+      val = document.getElementById("NumAttempts").value;
+      num_attempts = parseInt(val);
+
+      val = document.getElementById("AllowDup").value;
+      allow_duplicates = parseInt(val);
+
+      cur1 = document.getElementById("Cur1"); 
+      cur2 = document.getElementById("Cur2"); 
+      cur3 = document.getElementById("Cur3"); 
+      cur4 = document.getElementById("Cur4"); 
+      cur5 = document.getElementById("Cur5"); 
+      cur6 = document.getElementById("Cur6"); 
+      cur7 = document.getElementById("Cur7"); 
+      cur8 = document.getElementById("Cur8"); 
+
+      curPath = 'url(' + imagesPath + '/color_1.ico)';
+      cur1.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_2.ico)';
+      cur2.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_3.ico)';
+      cur3.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_4.ico)';
+      cur4.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_5.ico)';
+      cur5.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_6.ico)';
+      cur6.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_7.ico)';
+      cur7.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_8.ico)';
+      cur8.style.cursor = curPath;
+
+      PrepareImagesAndPointers();
+
+      colors = new createImageArrays((num_colors*2)+1);
+      colors[0].src ="images/color_num.gif";
+
+      for (i=1; i<=num_colors; i++)
+      {
+        colors[i].src= "images/color_num"+i+".gif";
+        colors[i+num_colors].src= "images/color_num"+i+"b.gif";
+      }
+
+      ConvertImagesToCursors();
+
+      selectedNums = new Array(code_length);
+      tmpSelectedNums = new Array(code_length);
+      currRowNums = new Array(code_length);
+
+      i=0;
+
+      do
+      {
+        rand_num = generate_rand(num_colors);
+
+        if (allow_duplicates==1)
+        {
+          selectedNums[i] = rand_num;
+        }
+        else
+        {
+          exists =0;
+
+          for (j=0; j<i; j++)
+          {
+            if ( rand_num == selectedNums[j] )
+            {
+              exists=1;
+              break;
+            }
+          }
+
+
+          if (exists==1) 
+          { 
+            continue;
+          }
+          else
+          {
+            selectedNums[i] = rand_num;
+          }
+        }
+
+        i++;
+
+      } while ( i < code_length );
+
+      for (i=0; i<code_length; i++)
+      {
+        currRowNums[i] = 0;
+      }
+       
+      curr_attempt = 0;
+      game_ended =0;
+    }
+
+    function PrepareImagesAndPointers()
+    {
+      cur1 = document.getElementById("Cur1"); 
+      cur2 = document.getElementById("Cur2"); 
+      cur3 = document.getElementById("Cur3"); 
+      cur4 = document.getElementById("Cur4"); 
+      cur5 = document.getElementById("Cur5"); 
+      cur6 = document.getElementById("Cur6"); 
+      cur7 = document.getElementById("Cur7"); 
+      cur8 = document.getElementById("Cur8"); 
+
+      for (i=1; i<=num_colors; i++)
+      {
+        curs[i] = colors[i].src;
+      }
+
+      curPath = 'url(' + imagesPath + '/color_name_1.ico)';
+      cur1.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_name_2.ico)';
+      cur2.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_name_3.ico)';
+      cur3.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_name_4.ico)';
+      cur4.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_name_5.ico)';
+      cur5.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_name_6.ico)';
+      cur6.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_name_7.ico)';
+      cur7.style.cursor = curPath;
+      curPath = 'url(' + imagesPath + '/color_name_8.ico)';
+      cur8.style.cursor = curPath;
+
+      colors = new createImageArrays((num_colors*2)+1);
+      colors[0].src ="images/color_num.gif";
+
+      for (i=1; i<=num_colors; i++)
+      {
+        colors[i].src= "images/color_num"+i+".gif";
+        colors[i+num_colors].src= "images/color_num"+i+"b.gif";
+      }
+    }
+
+    function createImageArrays(len)
+    {
+      this.length= len; 
+      for (i=0; i<len; i++) 
+      {
+        this[i] = new Image();  
+      }
+      return this;
+    }
+
+    function MouseSelections ( value )
+    {
+     try
+     {
+       switch (value) 
+       {
+         case '1':
+           GameTable.style.cursor = cur1.style.cursor; 
+           break;
+
+         case '2':
+           GameTable.style.cursor = cur2.style.cursor; 
+           break;
+
+         case '3':
+           GameTable.style.cursor = cur3.style.cursor; 
+           break;
+
+         case '4':
+           GameTable.style.cursor = cur4.style.cursor; 
+           break;
+
+         case '5':
+           GameTable.style.cursor = cur5.style.cursor; 
+           break;
+
+         case '6':
+           GameTable.style.cursor = cur6.style.cursor; 
+           break;
+
+         case '7':
+           GameTable.style.cursor = cur7.style.cursor; 
+           break;
+
+         case '8':
+           GameTable.style.cursor = cur8.style.cursor; 
+           break;
+
+           default : ;
+       }          
+
+       for (i=1; i<=num_colors; i++)
+       {
+         mouse_colors[i].src= "new_images/color_num"+i+".gif";
+         mouse_colors[i+num_colors].src= "new_images/color_num"+i+"b.gif";
+       }
+
+       if ( (value>='1') && (value<=maxMouseValue))
+       {
+           currMouseValue = value;
+       }
+
+     }
+     catch(err)
+     {
+       alert("Error in function MouseSelections : "+err.description);
+     }
+   }
+
+   function handle_wheel1(event)
+   {
+     try 
+     { 
+       if ( (currMouseValue>='1') && (currMouseValue<=maxMouseValue))
+       {
+         if (!event)
+         {
+           event = window.event;
+  	   window.event.returnValue = false;
+         }
+
+         if (event.preventDefault)
+         {
+           event.preventDefault();
+         }
+
+         HandleMouseWheel(event);
+       }
+     }
+
+     catch(err)
+     {
+       alert("Error in function Handle_Wheel1 : "+err.description);
+     }
+   }
+
+   function HandleMouseWheel(e)
+   {
+     try 
+     {
+       if ( ( currMouseValue >= '1' ) && ( currMouseValue <= maxMouseValue ) )
+       {
+         if (!e) e = window.event;
+ 
+         if ( e.wheelDelta <= 0 || e.detail > 0) 
+         { 
+           ChangeMouseSelections(1); 
+         }
+	 else 
+         { 
+           ChangeMouseSelections(-1); 
+         }
+       }
+     }
+       
+     catch(err)
+     {
+       alert("Error in function HandleMouseWheel : "+err.description);
+     }
+   } 
+
+   function ChangeMouseSelections ( delta )
+   {
+     try
+     {
+       if ( delta == 1 )
+       {
+         if ( currMouseValue == maxMouseValue ) MouseSelections ('1');
+         else if ( currMouseValue == '1' ) MouseSelections ('2');
+         else if ( currMouseValue == '2' ) MouseSelections ('3');
+         else if ( currMouseValue == '3' ) MouseSelections ('4');
+         else if ( currMouseValue == '4' ) MouseSelections ('5');
+         else if ( currMouseValue == '5' ) MouseSelections ('6');
+         else if ( currMouseValue == '6' ) MouseSelections ('7');
+         else if ( currMouseValue == '7' ) MouseSelections ('8');
+       }
+
+       else 
+       {
+         if ( currMouseValue == '1' ) MouseSelections (maxMouseValue);
+         else if ( currMouseValue == '2' ) MouseSelections ('1');
+         else if ( currMouseValue == '3' ) MouseSelections ('2');
+         else if ( currMouseValue == '4' ) MouseSelections ('3');
+         else if ( currMouseValue == '5' ) MouseSelections ('4');
+         else if ( currMouseValue == '6' ) MouseSelections ('5');
+         else if ( currMouseValue == '7' ) MouseSelections ('6');
+         else if ( currMouseValue == '8' ) MouseSelections ('7');
+       }
+     }
+     catch(err)
+     {
+       alert("Error in function ChangeMouseSelections : "+err.description);
+     }
+   }
+
+  </script>
+
+  <script language="javascript" src="mm1.js" type="TEXT/JAVASCRIPT">
+  </script>
+
+  <script language="javascript" src="mm4.js" type="TEXT/JAVASCRIPT">
+  </script>
+
+  <script type="text/javascript">
+   function PutColors ( x,y )
+   {
+     try
+     {
+       if ( curr_attempt != y) return;
+       if ( game_ended == 1 ) return;
+
+       for (i=0; i<code_length; i++)
+       {
+         if ( currRowNums[i] == 0 )
+         {
+            colors[i]=new_colors[i];
+         }
+       }       
+
+       if ( (currMouseValue>='1') && (currMouseValue<=maxMouseValue))
+       {
+         img_name = "img" + (code_length*(num_attempts-y))+x;
+       
+         document[img_name].src= colors[currMouseValue].src;
+       
+         currRowNums[x] = currMouseValue;
+       }
+     }
+     catch(err)
+     {
+       alert("Error in function PutColors : "+err.description);
+     }
+   }
+
+   function CheckRows ()
+   {
+     try
+     {
+       if ( game_ended == 1 ) return;
+
+       if ( curr_attempt == num_attempts )
+       {
+         alert ('Sorry, no more attempts!');
+         return;
+       }
+
+       for (i=0; i<code_length; i++)
+       {
+         if ( currRowNums[i] == 0 )
+         {
+           alert ('Row is not complete!');
+           return;
+         }
+       }       
+
+       var str ='';
+       for (i=0; i<code_length; i++)
+       {
+         str = str+'|'+selectedNums[i];
+       }
+
+       num_bulls = 0;
+       num_cows = 0;
+
+       for (i=0; i<code_length; i++)
+       {
+         tmpSelectedNums[i] = selectedNums[i]
+       }
+
+       for (i=0; i<code_length; i++)
+       {
+         if ( currRowNums[i] == tmpSelectedNums[i] )
+         {
+           num_bulls++;
+           tmpSelectedNums[i] = 0;
+           currRowNums[i] = 0;
+         }
+       }
+
+       for (i=0; i<code_length; i++)
+       {
+         if ( currRowNums[i] == 0 ) continue;
+
+         for (j=0; j<code_length; j++)
+         {
+           if ( currRowNums[i] == tmpSelectedNums[j] )
+           { 
+              num_cows++;
+              tmpSelectedNums[j] = 0;
+              break;
+           }
+         }
+       }
+
+       for (i=0; i<code_length; i++)
+       {
+         currRowNums[i] = 0;
+       }       
+
+       PutBullsAndCows ();
+
+       rowName = "Row" + (num_attempts-curr_attempt); 
+       rowFld = document.getElementById(rowName); 
+       rowFld.style.background = "#ad7363";
+
+       btnName = "Btn" + (num_attempts-curr_attempt);
+       btnFld = document.getElementById(btnName); 
+       btnFld.style.visibility = "hidden";
+
+       curr_attempt++;
+
+       if ( num_bulls == code_length )
+       { 
+         game_ended = 1;
+         alert ("Congratulations!! You win !!");
+         return;
+       }
+
+       rowName = "Row" + (num_attempts-curr_attempt); 
+       rowFld = document.getElementById(rowName); 
+       rowFld.style.background = "#885343";
+
+       btnName = "Btn" + (num_attempts-curr_attempt);
+       btnFld = document.getElementById(btnName); 
+       btnFld.style.visibility = "visible";
+
+     }
+     catch(err)
+     {
+       alert("Error in function CheckRows : "+err.description);
+     }
+   }
+  </script>
+
+  <script language="javascript" 
+          src="http://www.ucount.info/hits/HitsParams.js" 
+          type="TEXT/JAVASCRIPT">
+  </script>
+
+</HEAD>
+
+<BODY>
+
+  <br>
+  <div align="center">
+  <font size="+3" color="#0000dd">Play Mastermind Online</font>
+  </div>
+  <br>       
+
+  <Table align="center">
+
+  <tr valign="top">
+
+  <td>&nbsp;</td>
+
+  <td align="center">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- au_webgames_mastermind_left -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:160px;height:600px"
+     data-ad-client="ca-pub-3899981072920923"
+     data-ad-slot="5868719106"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </td>
+
+  <td  BGCOLOR="#ddeecc">
+  </td>
+
+  <td Style = "padding-left:120px;padding-right:120px;">
+
+  
+  <div id="Cur1"></div>
+  <div id="Cur2"></div>
+  <div id="Cur3"></div>
+  <div id="Cur4"></div>
+  <div id="Cur5"></div>
+  <div id="Cur6"></div>
+  <div id="Cur7"></div>
+  <div id="Cur8"></div>
+
+  <INPUT TYPE= "hidden" ID= "NumColors" VALUE=8> 
+  <INPUT TYPE= "hidden" ID= "CodeLength" VALUE=4> 
+  <INPUT TYPE= "hidden" ID= "NumAttempts" VALUE=10> 
+  <INPUT TYPE= "hidden" ID= "AllowDup" VALUE=0> 
+
+    <table align="center"
+           cellspacing="0" 
+           cellpadding="0" 
+           BGCOLOR="#cd7363"
+           Style = "border-left:6px brown solid;border-top:8px brown solid;
+                    border-right:6px brown solid;border-bottom:8px brown solid;"
+           ID="GameTable">
+
+		   <tr><td colspan="2"><table cellspacing="0" cellpadding="0"><tr bgcolor="#ad7363"><td><A><IMG SRC="images/qm.gif" Name="sel0" WIDTH="36" HEIGHT="36" BORDER="0" ALT=""></A></td><td><A><IMG SRC="images/qm.gif" Name="sel1" WIDTH="36" HEIGHT="36" BORDER="0" ALT=""></A></td><td><A><IMG SRC="images/qm.gif" Name="sel2" WIDTH="36" HEIGHT="36" BORDER="0" ALT=""></A></td><td><A><IMG SRC="images/qm.gif" Name="sel3" WIDTH="36" HEIGHT="36" BORDER="0" ALT=""></A></td></tr><tr  Id="Row1" bgcolor="#ad7363"><td><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="img40" WIDTH="36" HEIGHT="36" BORDER="0" onClick="PutColor(0,9)" ALT=""></A></td><td><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="img41" WIDTH="36" HEIGHT="36" BORDER="0" onClick="PutColor(1,9)" ALT=""></A></td><td><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="img42" WIDTH="36" HEIGHT="36" BORDER="0" onClick="PutColor(2,9)" ALT=""></A></td><td><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="img43" WIDTH="36" HEIGHT="36" BORDER="0" onClick="PutColor(3,9)" ALT=""></A></td><td><table cellspacing="0" cellpadding="0"><tr><td><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="bc_img40" WIDTH="14" HEIGHT="14" BORDER="0" ALT=""></td><td><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="bc_img41" WIDTH="14" HEIGHT="14" BORDER="0" ALT=""></td></tr><tr><td><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="bc_img42" WIDTH="14" HEIGHT="14" BORDER="0" ALT=""></td><td><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="bc_img43" WIDTH="14" HEIGHT="14" BORDER="0" ALT=""></td></tr></table></td><TD><INPUT TYPE="button" ID="Btn1" OnClick="CheckRow()" VALUE="Check" style='visibility:hidden;' NAME="Check"></TD></tr><tr  Id="Row10" bgcolor="#885343"><td><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="img400" WIDTH="36" HEIGHT="36" BORDER="0" onClick="PutColor(0,0)" ALT=""></A></td><td><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="img401" WIDTH="36" HEIGHT="36" BORDER="0" onClick="PutColor(1,0)" ALT=""></A></td><td><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="img402" WIDTH="36" HEIGHT="36" BORDER="0" onClick="PutColor(2,0)" ALT=""></A></td><td><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="img403" WIDTH="36" HEIGHT="36" BORDER="0" onClick="PutColor(3,0)" ALT=""></A></td><td><table cellspacing="0" cellpadding="0"><tr><td><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="bc_img400" WIDTH="14" HEIGHT="14" BORDER="0" ALT=""></td><td><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="bc_img401" WIDTH="14" HEIGHT="14" BORDER="0" ALT=""></td></tr><tr><td><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="bc_img402" WIDTH="14" HEIGHT="14" BORDER="0" ALT=""></td><td><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/vide.gif?raw=true" Name="bc_img403" WIDTH="14" HEIGHT="14" BORDER="0" ALT=""></td></tr></table></td><TD><INPUT TYPE="button" ID="Btn10" OnClick="CheckRow()" VALUE="Check" style='visibility:show;' NAME="Check"></TD></tr></table></td></tr><tr><td>&nbsp;</td></tr><tr><td><table cellspacing="0" cellpadding="0"><tr><td bgcolor='#ad7363'><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/1.gif?raw=true" WIDTH="32" HEIGHT="32" BORDER="0" OnClick="MouseSelection('1')" onMouseOver="this.style.backgroundColor = '#cd9383';" onMouseOut="this.style.backgroundColor = '#ad7363';" ALT=""></A></td><td bgcolor='#ad7363'><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/2.gif?raw=true" WIDTH="32" HEIGHT="32" BORDER="0" OnClick="MouseSelection('2')" onMouseOver="this.style.backgroundColor = '#cd9383';" onMouseOut="this.style.backgroundColor = '#ad7363';" ALT=""></A></td><td bgcolor='#ad7363'><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/3.gif?raw=true" WIDTH="32" HEIGHT="32" BORDER="0" OnClick="MouseSelection('3')" onMouseOver="this.style.backgroundColor = '#cd9383';" onMouseOut="this.style.backgroundColor = '#ad7363';" ALT=""></A></td><td bgcolor='#ad7363'><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/4.gif?raw=true" WIDTH="32" HEIGHT="32" BORDER="0" OnClick="MouseSelection('4')" onMouseOver="this.style.backgroundColor = '#cd9383';" onMouseOut="this.style.backgroundColor = '#ad7363';" ALT=""></A></td></tr><tr><td bgcolor='#ad7363'><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/5.gif?raw=true" WIDTH="32" HEIGHT="32" BORDER="0" OnClick="MouseSelection('5')" onMouseOver="this.style.backgroundColor = '#cd9383';" onMouseOut="this.style.backgroundColor = '#ad7363';" ALT=""></A></td><td bgcolor='#ad7363'><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/6.gif?raw=true" WIDTH="32" HEIGHT="32" BORDER="0" OnClick="MouseSelection('6')" onMouseOver="this.style.backgroundColor = '#cd9383';" onMouseOut="this.style.backgroundColor = '#ad7363';" ALT=""></A></td><td bgcolor='#ad7363'><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/bc.gif?raw=true" WIDTH="32" HEIGHT="32" BORDER="0" OnClick="MouseSelection('7')" onMouseOver="this.style.backgroundColor = '#cd9383';" onMouseOut="this.style.backgroundColor = '#ad7363';" ALT=""></A></td><td bgcolor='#ad7363'><A><IMG SRC="https://github.com/PROJETSID/BDD/blob/master/masterMindJavaScriptAVerifier/bp.gif?raw=true" WIDTH="32" HEIGHT="32" BORDER="0" OnClick="MouseSelection('8')" onMouseOver="this.style.backgroundColor = '#cd9383';" onMouseOut="this.style.backgroundColor = '#ad7363';" ALT=""></A></td></tr></table></td></tr><tr><td align="center"><form METHOD=POST ACTION="index.php"><table cellspacing="0" cellpadding="0"><tr><td><div class="ClassForm">Code length<select name="CodeLength"><option Selected>4<option >6<option >8</select></div></td></tr><tr><td><div class="ClassForm">Allow duplicates<INPUT TYPE="CHECKBOX" Id="AllowDuplicates" Name="AllowDuplicates" ></div></td></TR><TR><TD><INPUT TYPE="submit" NAME="NewGame" VALUE="Start New Game "></TD></tr></TABLE></form></td></tr>
+		   <!--TR>
+        <TD align="center" colspan="4"> 
+          <INPUT TYPE="text"
+                 ID="StatusId"
+                 NAME="GameStatus"
+                 Size="24">
+        </TD> 
+      </tr-->
+
+    </table>
+
+  </td>
+
+  <td  BGCOLOR="#ddeecc">
+  </td>
+
+  <td align="center">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- au_webgames_mastermind_right -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:160px;height:600px"
+     data-ad-client="ca-pub-3899981072920923"
+     data-ad-slot="1298918708"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </td>
+
+  <td>&nbsp;</td>
+
+
+
+</tr>
+
+      <tr><td  align="center" colspan="7">&nbsp;</td></tr>
+
+
+
+</Table>
+
+<IMG SRC="images/color_hole.gif" width="0" height="0" alt="">
+
+
+
+
+   <hr width="728">
+   <table align="center">
+   <tr>
+   <td>
+     <a href="rules.php"><font size="2">Rules of the game</font></a>
+   </td>
+   <td>
+     &nbsp;&nbsp;
+   </td>
+   <td>
+     <a href="../index.php"><font size="2">Home</font></a>
+   </td>
+   </tr>
+   </table>
+
+      <script language="javascript" 
+              type="TEXT/JAVASCRIPT">
+        Init();
+      </script>
+	  
+
+<br />	
+	
+<div align="center">	
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- au_webgames_mastermind_728_90 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-3899981072920923"
+     data-ad-slot="5729118309"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+		
+<br />		
+	
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6144998-4");
+pageTracker._trackPageview();
+</script>
+
+</BODY>
+
+</HTML>
+
+

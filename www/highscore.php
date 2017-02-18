@@ -7,7 +7,7 @@
         <meta charset="utf-8" />
 
         <title>High Scores</title>
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="projetstyle.css" />
         <?php
             include("head.php");
         ?>
