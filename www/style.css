@@ -15,9 +15,16 @@
     justify-content: center;
 }
 
+#logo
+{
+	/*mise en page flex*/
+    display: flex;
+    /*centre le contenu*/
+    justify-content: center;
+}
+
 
 /*menu du site*/
-
 .menu_choix_0 {
 	/*centre le texte au milieu du bouton*/
 	text-align: center;
