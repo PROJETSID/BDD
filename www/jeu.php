@@ -13,7 +13,7 @@
 		?>
     </head>
 
-    <body>
+    <body onload="initialisations();">
     
 
 		<div id="mettre_au_milieu_de_la_page">
@@ -31,72 +31,117 @@
 					<div>
 
 					</div>
+					<!-- emp : emplacements -->
 						<table>
 							<tr>
-								<td>a</td>
-								<td>a</td>
-								<td>a</td>
-								<td>a</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 							<tr>
-								<td>q</td>
-								<td>s</td>
-								<td>d</td>
-								<td>f</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 							<tr>
-								<td>h</td>
-								<td>u</td>
-								<td>d</td>
-								<td>j</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 							<tr>
-								<td>q</td>
-								<td>s</td>
-								<td>d</td>
-								<td>f</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 							<tr>
-								<td>h</td>
-								<td>u</td>
-								<td>d</td>
-								<td>j</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 							<tr>
-								<td>q</td>
-								<td>s</td>
-								<td>d</td>
-								<td>f</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 							<tr>
-								<td>h</td>
-								<td>u</td>
-								<td>d</td>
-								<td>j</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 							<tr>
-								<td>q</td>
-								<td>s</td>
-								<td>d</td>
-								<td>f</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 							<tr>
-								<td>h</td>
-								<td>u</td>
-								<td>d</td>
-								<td>j</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 							<tr>
-								<td>q</td>
-								<td>s</td>
-								<td>d</td>
-								<td>f</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 							<tr>
-								<td>h</td>
-								<td>u</td>
-								<td>d</td>
-								<td>j</td>
+								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp2">e2</a></td>
+								<td><a href="#", class="button" id="emp3">e3</a></td>
+								<td><a href="#", class="button" id="emp4">e4</a></td>
+								<td><a href="#", class="button" id="emp5">e5</a></td>
+								<td><a href="#", class="button" id="emp6">e6</a></td>
+								<td><a href="#", class="button" id="emp7">e7</a></td>
+								<td><a href="#", class="button" id="emp8">e8</a></td>
 							</tr>
 						</table>
 					</div>
@@ -112,36 +157,38 @@
 						
 					</div>
 					<div id="bille_à_placer">
-						<a href="#", class="button" id="bille1"> Bouton 1</a>
-						<p>blaazdzadz</p>
 
 						<table>
 							<tr>
-								<td id="bille1" >a</td>
-								<td id="bille2" >a</td>
-								<td id="bille3" >a</td>
+								<td><a href="#", class="button" id="bille1">b1</a></td>
+								<td><a href="#", class="button" id="bille2">b2</a></td>
+								<td><a href="#", class="button" id="bille3">b3</a></td>
+								<td><a href="#", class="button" id="bille4">b4</a></td>
 							</tr>
 							<tr>
-								<td id="bille4" >a</td>
-								<td id="bille5" >a</td>
-								<td id="bille6" >a</td>
+								
+								<td><a href="#", class="button" id="bille5">b5</a></td>
+								<td><a href="#", class="button" id="bille6">b6</a></td>
+								<td><a href="#", class="button" id="bille7">b7</a></td>
+								<td><a href="#", class="button" id="bille8">b8</a></td>
 							</tr>
 							<tr>
-								<td id="bille7" >a</td>
-								<td id="bille8" >a</td>
-								<td id="bille9" >a</td>
+								
+								<td><a href="#", class="button" id="bille9">b9</a></td>
+								<td><a href="#", class="button" id="bille10">b10</a></td>
+								<td><a href="#", class="button" id="bille11">b11</a></td>
+								<td><a href="#", class="button" id="bille12">b12</a></td>
 							</tr>
 							<tr>
-								<td id="bille10" >a</td>
-								<td id="bille11" >a</td>
-								<td id="bille12" >a</td>
+								<td><a href="#", class="button" id="bille13">b13</a></td>
+								<td><a href="#", class="button" id="bille14">b14</a></td>
+								<td><a href="#", class="button" id="bille15">b15</a></td>
+								<td><a href="#", class="button" id="bille16">b16</a></td>
 							</tr>
 							<tr>
-								<td id="bille13" >a</td>
-								<td id="bille14" >a</td>
-								<td id="bille15" >a</td>
+								
 							</tr>
-							</table>
+						</table>
 					</div>
 				</div>
 
@@ -149,49 +196,53 @@
 
 		</div>
 
-
-<p>This example uses the HTML DOM to assign an "onclick" event to a p element.</p>
-
-<p id="bille1">Click me.</p>
-
-
-
-
-
-
 <script>
-/*	var bille1 = document.getElementById("bille1");*/
-	var bille2 = document.getElementById("bille2");
-	var bille3 = document.getElementById("bille3");
-	var bille4 = document.getElementById("bille4");
-	var bille5 = document.getElementById("bille5");
-	var bille6 = document.getElementById("bille6");
-	var bille7 = document.getElementById("bille7");
-	var bille8 = document.getElementById("bille8");
-	var bille9 = document.getElementById("bille9");
-	var bille10 = document.getElementById("bille10");
-	var bille11 = document.getElementById("bille11");
-	var bille12 = document.getElementById("bille12");
-	var bille13 = document.getElementById("bille13");
-	var bille14 = document.getElementById("bille14");
-	var bille15 = document.getElementById("bille15");
 
+/*les billes sont représentées par les cases d'un tableau avec une backgrounColor correspondant à la couleur de la bille
+pour la suite lorsqu'on parlera de case ce sera pour désigner la bille correspondante*/
 
+function initialisations() {
 
-/*	bille1.onClick = function() {
-		on passe de snake_case dans le CSS a camelCase dans le JavaScript
-		r.style.backgroundColor = 'black';
-		write("bla");
-		/*r.style.visibility = 'hiden';
-	}*/
+	/*on définit la taille du tableau a initialiser*/
+	const NB_LIGNES = 1;
+	const NB_CASES_PAR_LIGNE = 5;
+	const NB_CASES = NB_LIGNES * NB_CASES_PAR_LIGNE
 
+	/*on définit le nombre de billes*/
+	const NB_BILLES = 4;
 
+	/*variables temporaires*/
+	var nom_case = "";
+	var nom_emp = "";/*emp : emplacement*/
 
-document.getElementById("bille1").onclick = function() {myFunction()};
-
-function myFunction() {
-    r.style.backgroundColor = 'black';
+	/*on initialise les billes à placer*/
+	for (var i = 1; i < NB_CASES; i++) {
+		/*on calcule l'id de la case*/
+		nom_case = "bille" + i;
+		/*on récupère la case et on lui affecte une fonction*/
+		var case = document.getElementById(nom_case);
+		case.onclick = function () {
+			/*on sauvegarde la couleur de la case*/
+			//sélectionner la bonne bille !
+			bille1.style.backgroundColor = "black";
+		    /*couleur_bille_a_placer = bille1.style.backgroundColor;*/
+		}
+	}
+	/*on initialise la grille de jeu*/
+/*		for (var i = 1; i < NB_BILLES; i++) {
+			/*on calcule l'id de l'emplacement
+			nom_emp = "emp" + i;
+			/*on récupère la case et on lui affecte une fonction
+			var emp = document.getElementById(nom_emp);
+			emp.onclick = function () {
+				/*on affecte la couleur sauvegardée à la case
+			    emp1.style.backgroundColor = couleur_bille_a_placer;
+			}
+		}*/
 }
+
+/*on appelle la fonction*/
+initialisations();
 
 </script>
 
@@ -199,3 +250,5 @@ function myFunction() {
     </body>
 
 </html>
+
+
