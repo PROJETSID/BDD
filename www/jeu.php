@@ -34,7 +34,7 @@
 					<!-- emp : emplacements -->
 						<table>
 							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
+								<td><a href="#", class="button" id="emp1">emplacement1</a></td>
 								<td><a href="#", class="button" id="emp2">e2</a></td>
 								<td><a href="#", class="button" id="emp3">e3</a></td>
 								<td><a href="#", class="button" id="emp4">e4</a></td>
@@ -158,9 +158,11 @@
 					</div>
 					<div id="bille_à_placer">
 
-						<table>
+					<td><button onclick="myFunction()">Try it</button></td>
+
+						<table id="testAppendChild">
 							<tr>
-								<td><a href="#", class="button" id="bille1">b1</a></td>
+								<td><a href="#", class="button" id="bille1">bille1</a></td>
 								<td><a href="#", class="button" id="bille2">b2</a></td>
 								<td><a href="#", class="button" id="bille3">b3</a></td>
 								<td><a href="#", class="button" id="bille4">b4</a></td>
@@ -178,12 +180,14 @@
 								<td><a href="#", class="button" id="bille10">b10</a></td>
 								<td><a href="#", class="button" id="bille11">b11</a></td>
 								<td><a href="#", class="button" id="bille12">b12</a></td>
+								
 							</tr>
 							<tr>
 								<td><a href="#", class="button" id="bille13">b13</a></td>
 								<td><a href="#", class="button" id="bille14">b14</a></td>
 								<td><a href="#", class="button" id="bille15">b15</a></td>
 								<td><a href="#", class="button" id="bille16">b16</a></td>
+								
 							</tr>
 							<tr>
 								
@@ -220,29 +224,35 @@ function initialisations() {
 		/*on calcule l'id de la case*/
 		nom_case = "bille" + i;
 		/*on récupère la case et on lui affecte une fonction*/
-		var case = document.getElementById(nom_case);
-		case.onclick = function () {
+		var bille = document.getElementById(nom_case);
+		bille.onclick = function () {
 			/*on sauvegarde la couleur de la case*/
 			//sélectionner la bonne bille !
-			bille1.style.backgroundColor = "black";
-		    /*couleur_bille_a_placer = bille1.style.backgroundColor;*/
+
+			/*plutôt gérer avec des images*/
+			/*bille1.style.backgroundImage = "black"; ?*/
+
+			bille2.style.backgroundColor = "pink";
+			bille3.style.backgroundColor = "blue";
+		    couleur_bille_a_placer = bille2.style.backgroundColor;
 		}
 	}
 	/*on initialise la grille de jeu*/
-/*		for (var i = 1; i < NB_BILLES; i++) {
-			/*on calcule l'id de l'emplacement
-			nom_emp = "emp" + i;
-			/*on récupère la case et on lui affecte une fonction
-			var emp = document.getElementById(nom_emp);
-			emp.onclick = function () {
-				/*on affecte la couleur sauvegardée à la case
-			    emp1.style.backgroundColor = couleur_bille_a_placer;
-			}
-		}*/
+	for (var i = 1; i < NB_BILLES; i++) {
+		/*on calcule l'id de l'emplacement*/
+		nom_emp = "emp" + i;
+		/*on récupère la case et on lui affecte une fonction*/
+		var emplacement = document.getElementById(nom_emp);
+		emplacement.onclick = function () {
+			/*on affecte la couleur sauvegardée à la case*/
+			emp1.style.backgroundColor = couleur_bille_a_placer;
+		}
+	}
 }
 
 /*on appelle la fonction*/
 initialisations();
+
 
 </script>
 
@@ -250,5 +260,32 @@ initialisations();
     </body>
 
 </html>
+
+
+
+
+
+<!-- pour créer les tableaux en très peu de ligne ! -->
+
+<!-- function myFunction() {
+    var node = document.createElement("TR");
+    var node2 = document.createElement("TD");
+    var node3 = document.createElement("TD");
+    var textnode = document.createTextNode("bla");
+
+    node2.appendChild(textnode);
+	node3.appendChild(textnode);
+
+    node.appendChild(node2);
+    node.appendChild(node3);
+
+
+/*cell = document.createElement("td");
+               text = document.createTextNode("la cellule est :" + i + j);
+               cell.appendChild(text);
+               row.appendChild(cell);*/
+
+    document.getElementById("testAppendChild").appendChild(node);
+} -->
 
 
