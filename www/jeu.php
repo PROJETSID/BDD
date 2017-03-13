@@ -32,117 +32,27 @@
 
 					</div>
 					<!-- emp : emplacements -->
-						<table>
-							<tr>
-								<td><a href="#", class="button" id="emp1">emplacement1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
-							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
-							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
-							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
-							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
-							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
-							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
-							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
-							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
-							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
-							<tr>
-								<td><a href="#", class="button" id="emp1">e1</a></td>
-								<td><a href="#", class="button" id="emp2">e2</a></td>
-								<td><a href="#", class="button" id="emp3">e3</a></td>
-								<td><a href="#", class="button" id="emp4">e4</a></td>
-								<td><a href="#", class="button" id="emp5">e5</a></td>
-								<td><a href="#", class="button" id="emp6">e6</a></td>
-								<td><a href="#", class="button" id="emp7">e7</a></td>
-								<td><a href="#", class="button" id="emp8">e8</a></td>
-							</tr>
+
+					<!--Code permettant de créer une grille en fonction du nombre de lignes et du nombre de
+					colonnes indiquées -->
+						<table id = "table_grille">
+
+						<?php
+
+						$nbrow = 10 ;
+						for ($ii = 1 ; $ii <=$nbrow ; $ii++)
+
+						{
+							echo "<tr>";	
+
+							$nbemp = 4;
+							for ($i = 1; $i <= $nbemp;$i++){
+								echo "<td><a href=\"#\", class=\"button\" class=\"emp1\">emplacement1</a></td>";
+										}	
+							echo "</tr>";
+							
+						}
+							?> 
 						</table>
 					</div>
 
@@ -158,7 +68,7 @@
 					</div>
 					<div id="bille_à_placer">
 
-					<td><button onclick="myFunction()">Try it</button></td>
+					<td><button onclick="nouvelleLigne()">Try it</button></td>
 
 						<table id="testAppendChild">
 							<tr>
@@ -201,6 +111,11 @@
 		</div>
 
 <script>
+
+
+function nouvelleLigne(){
+
+}
 
 /*les billes sont représentées par les cases d'un tableau avec une backgrounColor correspondant à la couleur de la bille
 pour la suite lorsqu'on parlera de case ce sera pour désigner la bille correspondante*/
