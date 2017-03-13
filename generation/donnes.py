@@ -90,3 +90,31 @@ for i in range(0,len(data1)):
                                                                         + data1[i]['nomCat'] +"','ddddddd');\n")
 
 mon_fichier.close()
+
+
+
+
+#génération des "insert into" de la table Collection
+
+
+
+
+nomCol = ['Classique','Formes','Gris','Rayures','Politique']
+nbBillesCollection = []
+difficulteBilleCollection = []
+
+#penser à passer à dix collections ! après avoir rajouter des images
+i = 0
+for i in range(5):
+    idCollection = i+1
+
+
+liste = {"idJoueur": i, "pseudoJ": vPseudo, "experienceJ": list_experienceJ,
+                         "motDePasse": liste_motDePasse, "idCat": idCat, "nomCat": liste_categ,
+                         "idNiveau": i, "seuilExpN": seuilExpN, "nbEmplacements": NBEmplacementsN, "timerN": timerN,
+                         "idCollection": idCollection}
+
+
+
+
+
