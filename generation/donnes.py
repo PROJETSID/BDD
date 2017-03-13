@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 """
 Created on Mon Mar  6 10:15:32 2017
@@ -138,6 +139,5 @@ liste = {"idJoueur": i, "pseudoJ": vPseudo, "experienceJ": list_experienceJ,
 
 
 mon_fichier.close()
-
 
 
