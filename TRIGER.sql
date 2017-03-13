@@ -59,4 +59,22 @@ END ;
 
 
 
+---l'experience du joueur ne peux pas baisser
+create or replace trigger t_b_u_expJ
+BEFORE UPDATE ON JOUEUR
+for each row 
+BEGIN
+	IF :OLD.experienceJ > :NEW.experienceJ THEN	
+		RAISE_APPLICATION_ERROR(-20033,'L EXPERIENCE DU Joueur NE PEUX PAS BAISSER')
+	END if;
+END;
 
+---la categorie du joueur ne peux pas baisser
+create or replace trigger t_b_u_catJ
+BEFORE UPDATE ON JOUEUR
+for each row 
+BEGIN
+	IF :OLD.idCat > :NEW.idCat THEN	
+		RAISE_APPLICATION_ERROR(-20034,'La categorie du joueur ne peux pas baisser')
+	END IF;
+END;
