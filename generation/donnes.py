@@ -93,21 +93,43 @@ mon_fichier.close()
 
 
 
-
+###########
 #génération des "insert into" de la table Collection
+###########
+
+#nombre de collection de chaque taille à insérer (4 billes, 6 billes et 10 billes)
+nbCol_par_type = [2,3,0]
 
 
+col_1 = [1,'Gris',4,'paisible']
+col_2 = [1,'Rayures',4,'paisible']
+col_3 = [1,'Classique',6,'facile']
+col_4 = [1,'Formes',6,'facile']
+col_5 = [1,'Politique',6,'modérée']
+#col_6 = [1,'a',6,'modérée']
+#col_7 = [1,'a',6,'difficile']
+#col_8 = [1,'a',10,'difficile']
+#col_9 = [1,'a',10,'cauchemardesque']
+#col_10 = [1,'a',10,'cauchemardesque']
+
+Collections = []
 
 
-nomCol = ['Classique','Formes','Gris','Rayures','Politique']
-nbBillesCollection = []
-difficulteBilleCollection = []
-
-#penser à passer à dix collections ! après avoir rajouter des images
+#penser à rajouter cinq collections !!! après avoir rajouté des images
+#Ecriture dans un fichier txt
+mon_fichier = open("fichier.txt", "w") 
 i = 0
 for i in range(5):
-    idCollection = i+1
+    
+for i in range(0,len(data1)):
+    mon_fichier.write("INSERT INTO \"21400692\".CATEGORIEJOUEUR VALUES (0,'"
+                                                                        + data1[i]['nomCat'] +"','ddddddd');\n")
 
+    
+
+def insertion_Collection():
+    insert_into_Collection = 
+    
 
 liste = {"idJoueur": i, "pseudoJ": vPseudo, "experienceJ": list_experienceJ,
                          "motDePasse": liste_motDePasse, "idCat": idCat, "nomCat": liste_categ,
@@ -115,6 +137,7 @@ liste = {"idJoueur": i, "pseudoJ": vPseudo, "experienceJ": list_experienceJ,
                          "idCollection": idCollection}
 
 
+mon_fichier.close()
 
 
 
