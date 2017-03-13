@@ -1,9 +1,5 @@
 <!-- Gestion des utilisateurs -->
 
-<?php
-
-// Connexion à la base
-?>
 
 <?php
 
@@ -21,13 +17,46 @@ if(isset($_POST['pass']))
 else $pass = ""; 
 
 // on écrit la requête sql
-$sql = "INSERT INTO Joueur(idJoueur, motdepasseJ) VALUES('$pseudo','$pass')";
-    
-// on insère les informations du formulaire dans la table
-mysql_query($sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
+$requete_insert = "Insert into \"21400692\".Joueur(IDJOUEUR,pseudoJ,motdepasseJ) VALUES (Seq_Joueur_idJoueur.nextval,'".$pseudo."','".$pass."')";
 
-// on affiche le résultat pour le visiteur
-echo 'Vos infos on été ajoutées.';
+$sql = oci_parse($dbConn, $requete_insert);
+//$req = oci_execute($sql);
+
+
+if ( ! oci_execute($sql) ){
+	echo 'test';
+$err = oci_error($sql);
+
+
+   echo"<script language=\"javascript\">";
+   echo" alert(\" ".htmlentities($err['message'])." \") ;";
+   echo "history.back();";
+   echo"</script>";
+
+//Afficher le code de l'erreur
+//echo htmlentities($err['code']);
+
+//Affichier le message d'erreur
+//echo htmlentities($err['message']);
+
+// pouvoir recuperer les codes SQL et afficher ce que je veux
+
+//if (!$req) {
+  // $e = oci_error($sql);  // Pour les erreurs oci_parse, passez le gestionnaire de connexion
+  	// trigger_error(htmlentities($e['message']), E_USER_ERROR);
+  	
+ }
+ else{echo $requete_insert; 
+echo 'Vos infos ont été ajoutées.';
+echo $pseudo;
+echo $pass;
+
+
+}
+
+ 	// on affiche le résultat pour le visiteur
+
+;
 
 
 ?>

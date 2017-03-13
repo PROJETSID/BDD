@@ -153,8 +153,38 @@
 #formulaire_authentification
 {
 	margin-top: 20px;
+	margin-right: 40px;
+	margin-bottom: 20px;
 
-	background-color: purple;
+	background-color: yellow;
+}
+
+#formulaire_connexion
+{
+	margin-top: 20px;
+	margin-left: 40px;
+	margin-bottom: 20px;
+
+	background-color: lightblue;
+}
+
+.text_authentification
+{
+	text-align: center;
+}
+
+.bouton_auth
+{
+	
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+
+}
+
+#text_err_connex
+{
+	display: none;
 }
 
 
