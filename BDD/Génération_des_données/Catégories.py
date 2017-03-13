@@ -9,7 +9,7 @@ liste_categ = ["Aluminium","Fer","Carbone","Bronze","Inox","Argent","Chrome","Or
 
 
 #Ecriture dans un fichier txt
-mon_fichier = open("fichier_categ.txt", "w") 
+mon_fichier = open("Catégories.txt", "w") 
 
 for i in range(0,len(liste_categ)):
     mon_fichier.write("INSERT INTO CATEGORIEJOUEUR VALUES (Seq_CategorieJoueur_idCat.nextval,'"

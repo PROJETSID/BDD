@@ -83,7 +83,7 @@ print(data1)
 
 
 #Ecriture dans un fichier txt
-mon_fichier = open("fichier.txt", "w") 
+mon_fichier = open("Categories.txt", "w") 
 
 
 for i in range(0,len(data1)):
