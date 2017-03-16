@@ -1,0 +1,5 @@
+INSERT INTO COLLECTION VALUES (1,'Gris',4,'paisible');
+INSERT INTO COLLECTION VALUES (2,'Rayures',4,'paisible');
+INSERT INTO COLLECTION VALUES (3,'Classique',6,'facile');
+INSERT INTO COLLECTION VALUES (4,'Formes',6,'facile');
+INSERT INTO COLLECTION VALUES (5,'Politique',6,'modérée');
