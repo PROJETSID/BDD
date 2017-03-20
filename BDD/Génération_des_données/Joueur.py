@@ -21,8 +21,8 @@ def master(n):
         vPseudo = ''.join(sample(liste_chaine, k))
         list_experienceJ = 0
         liste_motDePasse = ''.join(sample(liste_chaine, w))
-        liste_id_Cat = "Aluminium"
-        liste = {"idJoueur": i, "pseudoJ": vPseudo, "experienceJ": list_experienceJ, "motDePasse": liste_motDePasse,
+        liste_id_Cat = 1
+        liste = {"idJoueur": i+1, "pseudoJ": vPseudo, "experienceJ": list_experienceJ, "motDePasse": liste_motDePasse,
                      "idCat": liste_id_Cat}
         data.append(liste)
     return data
@@ -35,6 +35,6 @@ data1 =  master(100)
 print(data1)
 
 for i in range(0,len(data1)):
-    mon_fichier.write("INSERT INTO COLLECTION VALUES ("+str(data1[i]['idJoueur'])+",'"+data1[i]['pseudoJ']+
-    "',"+str(data1[i]['experienceJ'])+",'" +data1[i]['motDePasse']+"','"+str(data1[i]['idCat'])+"');\n")
+    mon_fichier.write("INSERT INTO JOUEUR VALUES ("+str(data1[i]['idJoueur'])+",'"+data1[i]['pseudoJ']+
+    "',"+str(data1[i]['experienceJ'])+",'" +data1[i]['motDePasse']+"',"+str(data1[i]['idCat'])+");\n")
 mon_fichier.close()

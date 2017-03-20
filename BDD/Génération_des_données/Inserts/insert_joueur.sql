@@ -1,3 +1,5 @@
+delete from joueur;
+
 INSERT INTO JOUEUR VALUES (1,'vAEmbZj',0,'cGEnDLbx',1);
 INSERT INTO JOUEUR VALUES (2,'zpcmKaC',0,'DAGIKJce',1);
 INSERT INTO JOUEUR VALUES (3,'RgShWuv',0,'2nHVKZit',1);

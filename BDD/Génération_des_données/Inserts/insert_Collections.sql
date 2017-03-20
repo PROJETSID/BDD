@@ -1,3 +1,8 @@
+alter table Collection
+modify difficulteCol varchar(20);
+
+delete from collection;
+
 INSERT INTO COLLECTION VALUES (1,'Gris',4,'paisible');
 INSERT INTO COLLECTION VALUES (2,'Rayures',4,'paisible');
 INSERT INTO COLLECTION VALUES (3,'Couleurs',6,'facile');
