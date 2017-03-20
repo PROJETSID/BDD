@@ -7,49 +7,44 @@ Created on Mon Mar 13 06:07:25 2017
 
 import sys
 import math
-# import numpy
 from random import *
-# import xlrd
-# from xlwt import workbook, formula
 import string
 
-# import pandas as pd
 
-liste_niveau = [range(1,51)]
-
-
-
+liste_col = [1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,5,5,5,5,5,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,9,9,9,9,9,10,10,10,10,10]
+timerN = range(60000,900000,16800)
 # generation des modalités
-def master(n):
+def master():
     data = []
     liste = {}
-    for i in range(n):
-        timerN = ""
-        idCollection = ""
+    for i in range(0,len(timerN)):
+        timer =timerN[i]
+        idCollection = liste_col[i]
         seuiExp = i+10
-        if i<10:
-            liste = {"idNiveau": i, "seuilExpN":seuiExp, "nbEmplacements": 2, "timerN": timerN, "idCollection": idCollection}
+        if i<11:
+            liste = {"idNiveau": i, "seuilExpN":seuiExp, "nbEmplacements": 2, "timerN": timer, "idCollection": idCollection}
         else:
-            if i < 40:
-                liste = {"idNiveau": i, "seuilExpN":seuiExp, "nbEmplacements": 4, "timerN": timerN,
+            if i < 41:
+                liste = {"idNiveau": i, "seuilExpN":seuiExp, "nbEmplacements": 4, "timerN": timer,
                      "idCollection": idCollection}
             else:
-                liste = {"idNiveau": i, "seuilExpN":seuiExp, "nbEmplacements": 8, "timerN": timerN,
+                liste = {"idNiveau": i, "seuilExpN":seuiExp, "nbEmplacements": 8, "timerN":timer,
                      "idCollection": idCollection}    
         data.append(liste)
     return data
 
-data1 = master(50)
+data1 = master()
     
 print(data1)
 
 
 #Ecriture dans un fichier txt
-mon_fichier = open("fichier.txt", "w") 
+mon_fichier = open("Niveau.txt", "w") 
 
+
+
+print(data1)
 
 for i in range(0,len(data1)):
-    mon_fichier.write("INSERT INTO \"21400692\".CATEGORIEJOUEUR VALUES (0,'"
-                                                                        + data1[i]['nomCat'] +"','ddddddd');\n")
-
+    mon_fichier.write("INSERT INTO Niveau VALUES ("+str(data1[i]['idNiveau'])+","+str(data1[i]['seuilExpN'])+","+str(data1[i]['timerN'])+","+str(data1[i]['idCollection'])+");\n")
 mon_fichier.close()
