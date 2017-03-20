@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 
 
+
+<!-- CODE PHP -->
 <?php
+		    //Connexion à la base
+			include("db/connect.php");
+
 
 // Variable nombre d'emplacement pour un niveau
 $Requete_nb_emp = "SELECT nbemblacementsN 
@@ -30,17 +35,18 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
     </head>
 
     <body onload="initialisations();">
-    
-
-    		 <?php
-		    include("niveau.php");
-		?>
+   
 
 
 <br>
 		<div id="mettre_au_milieu_de_la_page">
 			<div id="grille_des_niveaux">
 				
+
+    		 <!--<?php
+		    //include("niveau.php");
+		?> -->
+
 			</div>
 			<div id="espace_de_jeu">
 			<!-- (colonne de gauche) -->
@@ -61,7 +67,7 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
 
 						<?php
 
-						$nbrow = 10 ;
+						$nbrow = 1 ;
 						for ($ii = 1 ; $ii <=$nbrow ; $ii++)
 
 						{
@@ -78,6 +84,9 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
 
 
 						</table>
+					</div>
+
+					<div>
 					</div>
 
 				</div>
@@ -130,6 +139,7 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
 
 
 
+// Inserer une ligne à la fin du tableau
 function insererLigne_Fin(){
 
     var cell, ligne;
@@ -138,20 +148,25 @@ function insererLigne_Fin(){
     var tableau = document.getElementById("table_grille");
     // nombre de lignes dans la table (avant ajout de la ligne)
     var nbLignes = tableau.rows.length;
+
  
     ligne = tableau.insertRow(-1); // création d'une ligne pour ajout en fin de table
                                    // le paramètre est dans ce cas (-1)
  
     // création et insertion des cellules dans la nouvelle ligne créée
 
-
     for (i = 0;i< tableau.rows[0].cells.length;i++){
     	cell = ligne.insertCell(i);
-		cell.innerHTML = "emp" + (i+1);
+    	cell.setAttribute('id',nbLignes+1);
+		var caseA = document.createElement('a');
+ 		caseA.setAttribute('class','button');
+ 		caseA.setAttribute('href','javascript:void(0)');
+ 		caseA.setAttribute('onclick','jouer_bille(this)');
+ 		caseA.setAttribute('id','bille'+i); 
+ 		cell.appendChild(caseA);
+ 		caseA.innerHTML = "emp" + (i+1);
 		// Problème de balise
     }
-
- 
 };
 
 
@@ -172,12 +187,19 @@ function jouer_bille(elmt){
 	var idname = elmt.parentNode;
 	var numligne = idname.getAttribute('id');
 
+	    // on récupère l'identifiant (id) de la table qui sera modifiée
+    var tableau = document.getElementById("table_grille");
+    // nombre de lignes dans la table (avant ajout de la ligne)
+    var nbLignes = tableau.rows.length;
+
+
+
 	// Si on a pas selectionné de couleur
 	if (cellule.style.backgroundColor == 'white'){
 		alert('Veuillez sélectionner une couleur ! ');
 	}
 	// Si on clique sur une mauvaise ligne
-	else if (numligne > 1)
+	else if (numligne != nbLignes)
 	{
 		alert('Merci de cliquer sur la bonne ligne ! ');
 	}

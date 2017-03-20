@@ -22,7 +22,7 @@ def master(n):
         list_experienceJ = 0
         liste_motDePasse = ''.join(sample(liste_chaine, w))
         liste_id_Cat = 1
-        liste = {"idJoueur": i+1, "pseudoJ": vPseudo, "experienceJ": list_experienceJ, "motDePasse": liste_motDePasse,
+        liste = {"idJoueur": Seq_Joueur_idJoueur.nextval, "pseudoJ": vPseudo, "experienceJ": list_experienceJ, "motDePasse": liste_motDePasse,
                      "idCat": liste_id_Cat}
         data.append(liste)
     return data
