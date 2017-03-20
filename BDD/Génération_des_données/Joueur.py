@@ -34,6 +34,7 @@ data1 =  master(100)
 
 print(data1)
 
-for i in range(0,len(data)):
-    mon_fichier.write("INSERT INTO COLLECTION VALUES ("+data1[i]["idJoueur"]+","+data1[i])"pseudoJ"]+","+data1[i]["experienceJ"]+"," +data1[i]["motDePasse"]+","+data1[i]["idCat"]+");\n")
+for i in range(0,len(data1)):
+    mon_fichier.write("INSERT INTO COLLECTION VALUES ("+str(data1[i]['idJoueur'])+",'"+data1[i]['pseudoJ']+
+    "',"+str(data1[i]['experienceJ'])+",'" +data1[i]['motDePasse']+"','"+str(data1[i]['idCat'])+"');\n")
 mon_fichier.close()
