@@ -17,12 +17,12 @@ timerN = range(60000,900000,16800)
 def master():
     data = []
     liste = {}
-    for i in range(0,len(timerN)):
+    for i in range(0,len(timerN)+1):
         timer =timerN[i]
         idCollection = liste_col[i]
         seuiExp = i+10
         if i<11:
-            liste = {"idNiveau": i, "seuilExpN":seuiExp, "nbEmplacements": 2, "timerN": timer, "idCollection": idCollection}
+            liste = {"idNiveau": i+1, "seuilExpN":seuiExp, "nbEmplacements": 2, "timerN": timer, "idCollection": idCollection}
         else:
             if i < 41:
                 liste = {"idNiveau": i, "seuilExpN":seuiExp, "nbEmplacements": 4, "timerN": timer,
@@ -45,6 +45,6 @@ mon_fichier = open("Niveau.txt", "w")
 
 print(data1)
 
-for i in range(0,len(data1)):
+for i in range(0,len(data1)+1):
     mon_fichier.write("INSERT INTO Niveau VALUES ("+str(data1[i]['idNiveau'])+","+str(data1[i]['seuilExpN'])+","+str(data1[i]['timerN'])+","+str(data1[i]['idCollection'])+");\n")
 mon_fichier.close()
