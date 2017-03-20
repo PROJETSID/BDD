@@ -25,10 +25,10 @@ def master():
             liste = {"idNiveau": i+1, "seuilExpN":seuiExp, "nbEmplacements": 2, "timerN": timer, "idCollection": idCollection}
         else:
             if i < 41:
-                liste = {"idNiveau": i, "seuilExpN":seuiExp, "nbEmplacements": 4, "timerN": timer,
+                liste = {"idNiveau": i+1, "seuilExpN":seuiExp, "nbEmplacements": 4, "timerN": timer,
                      "idCollection": idCollection}
             else:
-                liste = {"idNiveau": i, "seuilExpN":seuiExp, "nbEmplacements": 8, "timerN":timer,
+                liste = {"idNiveau": i+1, "seuilExpN":seuiExp, "nbEmplacements": 8, "timerN":timer,
                      "idCollection": idCollection}    
         data.append(liste)
     return data
