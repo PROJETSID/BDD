@@ -3,33 +3,48 @@
 ####################################################
 
 #retourne le Insert Into Values sous la forme d'une chaîne de caractères
-def insertion_Collection(idCollection, nomCol, nbBillesCol, difficulté):
-    insert_into ="INSERT INTO COLLECTION VALUES ("+str(idCollection)+",'"+nomCol+"',"+str(nbBillesCol)+",'"+difficulté+"');\n"
+def insertion_Composer(idBille, idCollection):
+    insert_into ="INSERT INTO COMPOSER VALUES ("+str(idBille)+","+str(idCollection)+");\n"
     return insert_into
 
-#les 10 collections existantes
-col_1 = [1,'Gris',4,'paisible']
-col_2 = [2,'Rayures',4,'paisible']
-col_3 = [3,'Classique',6,'facile']
-col_4 = [4,'Formes',6,'facile']
-col_5 = [5,'Politique',6,'modérée']
-#col_6 = [6,'a',6,'modérée']
-#col_7 = [7,'a',6,'difficile']
-#col_8 = [8,'a',10,'difficile']
-#col_9 = [9,'a',10,'cauchemardesque']
-#col_10 = [10,'a',10,'cauchemardesque']
+#tableau contenant toutes les liens Bille/Collection
+Composer = [0] * 64
 
-#on les range dans uen liste
-Collections = [col_1,col_2,col_3,col_4,col_5,]
-#col_6,col_7,col_8,col_9,col_10
-
-#penser à rajouter cinq collections !!! après avoir rajouté des images
-
+#création de l'url
+for i in range(64) :
+    idCollection = ''
+    if i < 8 :
+        if i < 4 :
+            idCollection = 1
+        elif i < 8 :
+            idCollection = 2
+    elif i < 44 :
+        if i < 14 :
+            idCollection = 3
+        elif i < 20 :
+            idCollection = 4
+        elif i < 26 :
+           idCollection = 5
+        elif i < 32 :
+            idCollection = 6
+        elif i < 38 :
+            idCollection = 7
+        elif i < 44 :
+            idCollection = 8
+    else :
+        if i < 54 :
+             idCollection = 9
+        elif i < 64 :
+             idCollection = 10
+             
+    Composer[i] = idCollection
+        
+    
 #Ecriture dans un fichier txt
-mon_fichier = open("Collection.txt", "w") 
+mon_fichier = open("Composer.txt", "w") 
 
-for i in range(5):
+for i in range(64):
     #on ajoute un insert into
-    mon_fichier.write(insertion_Collection(Collections[i][0],Collections[i][1],Collections[i][2],Collections[i][3]))
+    mon_fichier.write(insertion_Composer(i,Composer[i]))
 
 mon_fichier.close()
