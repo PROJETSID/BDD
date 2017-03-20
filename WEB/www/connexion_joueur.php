@@ -1,61 +1,82 @@
+<!-- Gestion de la connexion de joueur-->
+
+
 <?php
 
+//Connexion à la base
 include("db/connect.php");
-// Recuperation des données
 
-//pseudo
+
+// Récupération des données
+
+//Pseuo
 if(isset($_POST['pseudo_connex']))
 	$pseudo_connex = $_POST['pseudo_connex'];
 else $pseudo_connex = "";
 
-//mot de passe
+//Mot de passe
 if(isset($_POST['pass_connex']))
 	$pass_connex = $_POST['pass_connex'];
 else $pass_connex = ""; 
 
 // on écrit la requête sql
 // procedure de connexion de joueur php
-$requete_connexion = "SELECT pseudoJ,motdepasseJ 
+$requete_connexion = "SELECT pseudoJ
 						FROM \"21400692\".Joueur 
-						WHERE pseudoJ = '". $pseudo_connex ."' 
-						AND motdepasseJ = '".$pass_connex."'; " ; 
-
+						WHERE pseudoJ = '$pseudo_connex' 
+                  AND motdepasseJ = '$pass_connex' " ; 
+ 
 
 $sql = oci_parse($dbConn, $requete_connexion);
-$req = oci_execute($sql);
-
-oci_fetch_all($sql,$res);
-$a = oci_num_rows($sql);
-echo $a;
-
-//if ($nbrows < 1) {
-	//echo $requete_connexion;
-   // Redirection vers le fichier authentification
-   //echo"<script language=\"javascript\">";
-   // Boite d'alerte
-   //echo" alert(\"Le pseudo ou le mot de passe est incorrect. Veuillez réessayer ! \") ;";
-   //Retour à la page précédente
-   //echo "history.back();";
-   //echo"</script>";
-	//echo 'Ca marche ! ';
 
 
-  // Autre manière pour redirection : header('Location: http://localhost/mastermind/authentification.php'); 
- //} else {
- 	//session_start();
- 	//$_SESSION['pseudo_connex'] = $pseudo_connex;
- 	//$_SESSION['pass_connex'] = $pass_connex;
- 	//echo 'Bienvenue '.$_SESSION['pseudo_connex'];
 
-   //echo"<script language=\"javascript\">";
-   //echo" alert(\" Bienvenue !  \") ;";
-   //echo "history.back();";
-   //echo"</script>";
+// Message d'erreur si la requête ne marche pas
 
-//echo 'On est bien !';
- 	//header('location : index.php');
-// };
+if (! oci_execute($sql) ){
+   
+   $err = oci_error($sql);
 
+  //Affichage du message d'erreur dans une fenêtre alert
+   echo"<script language=\"javascript\">";
+   echo" alert(\" ".htmlentities($err['message'])." \") ;";
+   echo "history.back();";
+   echo"</script>";
+}
+
+else { 
+
+   // Compteur permettant de compter le nombre de ligne
+   $i = 0 ;
+   while( oci_fetch($sql) )
+      $i=$i+1;
+
+      if ($i < 1) {
+         // Redirection vers le fichier authentification
+         echo"<script language=\"javascript\">";
+         //Boite d'alerte
+         echo" alert(\"Le pseudo ou le mot de passe est incorrect. Veuillez réessayer ! \") ;";
+         echo "history.back();";
+         echo"</script>";
+                   } 
+
+      else {
+
+         //Creation de la session de jeu
+         session_start();
+         $_SESSION['pseudo_connex'] = $pseudo_connex;
+         $_SESSION['pass_connex'] = $pass_connex;
+
+
+         // Message de bienvenue et redirection vers la page de jeu
+         echo"<script language=\"javascript\">";
+         echo" alert(\" Bienvenue $pseudo_connex !  \") ;";
+         echo "window.location.replace(\"http://localhost/mastermind/jeu.php\")";
+         echo"</script>";
+         
+         };
+
+}
 
 
 ?>

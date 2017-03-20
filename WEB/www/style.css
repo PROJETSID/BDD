@@ -65,6 +65,18 @@
 }
 
 
+
+.menu_choix_4 {
+	text-align: center;
+
+	background-color: yellow;
+
+	width: 20%;
+	height: 40px;
+}
+
+
+
 /*page Jeu*/
 #espace_de_jeu
 {
