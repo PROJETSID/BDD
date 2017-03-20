@@ -45,6 +45,6 @@ mon_fichier = open("Composer.txt", "w")
 
 for i in range(64):
     #on ajoute un insert into
-    mon_fichier.write(insertion_Composer(i,Composer[i]))
+    mon_fichier.write(insertion_Composer(i+1,Composer[i]))
 
 mon_fichier.close()
