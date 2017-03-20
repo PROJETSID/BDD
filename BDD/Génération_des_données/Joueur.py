@@ -35,11 +35,7 @@ data1 =  master(100)
 print(data1)
 
 for i in range(0,len(data1)):
-<<<<<<< Updated upstream
-    mon_fichier.write("INSERT INTO JOUEUR VALUES ("+str(data1[i]['idJoueur'])+",'"+data1[i]['pseudoJ']+
+
+    mon_fichier.write("INSERT INTO JOUEUR VALUES (Seq_Joueur_idJoueur.nextval"+",'"+data1[i]['pseudoJ']+
     "',"+str(data1[i]['experienceJ'])+",'" +data1[i]['motDePasse']+"',"+str(data1[i]['idCat'])+");\n")
-=======
-    mon_fichier.write("INSERT INTO COLLECTION VALUES (Seq_Joueur_idJoueur.nextval"+",'"+data1[i]['pseudoJ']+
-    "',"+str(data1[i]['experienceJ'])+",'" +data1[i]['motDePasse']+"','"+str(data1[i]['idCat'])+"');\n")
->>>>>>> Stashed changes
 mon_fichier.close()
