@@ -179,7 +179,7 @@ var timer = setInterval('decompte()',1000);
 function test_combi(){
 
 	// sauvegarde de la date
-	var date = date();
+	//var date = date();
 
 	//var cell, ligne;
     // on récupère l'identifiant (id) de la table qui sera modifiée
@@ -231,6 +231,13 @@ function test_combi(){
 
 
 
+    alert('Billes rouges : '+compteurrouge + ' '+ compteurblanc + 'billes blanches');
+
+    if(compteurrouge == tableau.rows[0].cells.length){
+    	alert('Vous avez trouvé la combinaison');
+    };
+
+
 // Envoi des données au fichier de traitement insert_ligne php
 //$.post('insert_ligne.php', {numeroL: variableToSend,
 //	tempsLigneL: variableToSend
@@ -271,12 +278,6 @@ function test_combi(){
 
 //?>
 
-
-    alert('Billes rouges : '+compteurrouge + ' '+ compteurblanc + 'billes blanches');
-
-    if(compteurrouge == tableau.rows[0].cells.length){
-    	alert('Vous avez trouvé la combinaison');
-    };
 
   
 };
