@@ -232,26 +232,27 @@ function test_combi(){
 
 
 // Envoi des données au fichier de traitement insert_ligne php
-$.post('insert_ligne.php', {numeroL: variableToSend,
-	tempsLigneL: variableToSend
-	nbIndiceRougeL: compteurrouge
-	nbIndiceBlancL: compteurblanc
-	idPartie : variableToSend
-	idJoueur: variableToSend
-});
+//$.post('insert_ligne.php', {numeroL: variableToSend,
+//	tempsLigneL: variableToSend
+//	nbIndiceRougeL: compteurrouge
+//	nbIndiceBlancL: compteurblanc
+//	idPartie : variableToSend
+//	idJoueur: variableToSend
+//});
 
 
 // Envoi des données au fichier de traitement  insert_proposition_joueur php
-$.post('insert_proposition_joueur.php', {
-	<?php 
-	for ($i=0;i < $VAR_NB_EMPLACEMENT; $i++){
-		echo "positionBilleLigne".$i." : $i ,
-		idligne".$i. " : nbLignes ,
-		idbilles".$i. " : coool[$i]";
-	}
+//$.post('insert_proposition_joueur.php', {
+//	<?php 
+	//echo "nbBilles : 4, ";
+	//for ($i=0;i < $VAR_NB_EMPLACEMENT; $i++){
+	//	echo "positionBilleLigne".$i." : $i ,
+	//	idligne".$i. " : nbLignes ,
+	//	idbilles".$i. " : coool[$i]";
+	//}
 
-	?>
-});
+//	?>
+//});
 
 
 
