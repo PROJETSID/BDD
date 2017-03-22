@@ -3,8 +3,8 @@
 $dbHost = "ntelline.cict.fr";
 $dbHostPort="1522";
 $dbServiceName = "etupre";
-$usr = "YOUR_ACCOUNT";
-$pswd = "YOUR_PASSWORD";
+$usr = "21605127";
+$pswd = "320323";
 $dbConnStr = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)
         (HOST=".$dbHost.")(PORT=".$dbHostPort."))
         (CONNECT_DATA=(SERVICE_NAME=".$dbServiceName.")))";

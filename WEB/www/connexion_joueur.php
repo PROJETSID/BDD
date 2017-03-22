@@ -71,7 +71,7 @@ else {
          // Message de bienvenue et redirection vers la page de jeu
          echo"<script language=\"javascript\">";
          echo" alert(\" Bienvenue $pseudo_connex !  \") ;";
-         echo "window.location.replace(\"http://localhost/mastermind/jeu.php\")";
+         echo "window.location.replace(\"http://localhost/mastermind/niveau.php\")";
          echo"</script>";
          
          };

@@ -32,9 +32,43 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
 		<?php
 		    include("head.php");
 		?>
+
+<!-- Script du timer -->
+
+		<script language="javascript" type="text/javascript">
+
+var compte = 60;
+function decompte()
+{
+        if(compte <= 1) {
+        pluriel = "";
+        } else {
+        pluriel = "s";
+        }
+ 
+    document.getElementById("timer").innerHTML = compte + " seconde" + pluriel;
+ 
+        if(compte == 0 || compte < 0) {
+        compte = 0;
+ 		alert('Vous avez perdu !');
+        clearInterval(timer);
+       // Redirection vers la page niveau
+       // document.location.href = "http://localhost/mastermind/niveau.php";
+        }
+ 
+    compte--;
+}
+var timer = setInterval('decompte()',1000);
+
+</script>
+
+
     </head>
 
-    <body onload="initialisations();">
+
+    <!-- BODY -->
+
+    <body onload="initialisations();decompte();">
    
 
 
@@ -43,11 +77,12 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
 			<div id="grille_des_niveaux">
 				
 
-    		 <!--<?php
+    		    <!--// <?php
 		    //include("niveau.php");
-		?> -->
+		?>   -->
 
-			</div>
+			</div> 
+
 			<div id="espace_de_jeu">
 			<!-- (colonne de gauche) -->
 			<!-- la combinaison à trouver et la grille de jeu -->
@@ -71,7 +106,7 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
 						for ($ii = 1 ; $ii <=$nbrow ; $ii++)
 
 						{
-							echo "<tr >";	
+							echo "<tr id = \"ligne".$ii."\">";
 
 							$nbemp = 4;
 							for ($i = 1; $i <= $nbemp;$i++){
@@ -90,10 +125,12 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
 					</div>
 
 				</div>
+
 				<!-- (colonne de droite) -->
 				<!-- le timer, le score et la réserve de billes à placer (colonne de droite) -->
 
 				<div id="fonctionnalités">
+					<p> Temps restant avant la fin de la partie</p>
 					<div id="timer">
 						
 					</div>
@@ -109,7 +146,7 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
 					<!--Liste des billes de la collection -->
 					<div id="bille_à_placer">
 
-					<td><button onclick="insererLigne_Fin()">Try it</button></td>
+					<td><button onclick="insererLigne_Fin();test_combi()" action = "insert_prop.php">Jouer</button></td>
 
 						<table id="testAppendChild">
 						<?php
@@ -138,6 +175,111 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
 <script>
 
 
+// Test de la combinaison
+function test_combi(){
+
+	// sauvegarde de la date
+	var date = date();
+
+	//var cell, ligne;
+    // on récupère l'identifiant (id) de la table qui sera modifiée
+    var tableau = document.getElementById("table_grille");
+    // nombre de lignes dans la table (avant ajout de la ligne)
+    var nbLignes = tableau.rows.length-1;
+    //alert (nbLignes);
+    // Accès à la couleur d'un élément de la dernière ligne
+    var idligne = "ligne" + nbLignes;
+    var ligne_jeu = document.getElementById(idligne).childNodes;
+
+	// Vecteurs pour stocker les couleurs et accessoirement, les positions
+    var coool = [];
+	// Récupérer les différentes couleurs
+    	for (i = 0; i< ligne_jeu.length;i++){
+    		var cell1 = ligne_jeu[i].childNodes;
+    		coool.push(cell1[0].style.backgroundColor);
+    };
+    alert(coool);
+
+
+// Initialisation d'une combinaison au hasard
+
+	var combi = ["yellow","crimson","darkgray","blue"];
+
+
+
+// Test pour la combinaison
+
+	// pions de la bonne couleur et bien placé : pion rouge 
+	// pions de la bonne couleur mais mal placé : pion blanc
+
+	var compteurblanc = 0; 
+	var compteurrouge =0;
+
+
+    // Test pour les billes rouges
+    // fonction includes permet de savoir si la bille est dans la combinaison
+    for (i=0;i<coool.length;i++){
+    	if (combi.includes(coool[i])){
+    		    	if (combi[i] == coool[i]){
+    		compteurrouge++ ; 
+    	} else {
+			compteurblanc++ ; 
+    	}
+    	} 
+    };
+
+
+
+
+// Envoi des données au fichier de traitement insert_ligne php
+$.post('insert_ligne.php', {numeroL: variableToSend,
+	tempsLigneL: variableToSend
+	nbIndiceRougeL: compteurrouge
+	nbIndiceBlancL: compteurblanc
+	idPartie : variableToSend
+	idJoueur: variableToSend
+});
+
+
+// Envoi des données au fichier de traitement  insert_proposition_joueur php
+$.post('insert_proposition_joueur.php', {
+	<?php 
+	for ($i=0;i < $VAR_NB_EMPLACEMENT; $i++){
+		echo "positionBilleLigne".$i." : $i ,
+		idligne".$i. " : nbLignes ,
+		idbilles".$i. " : coool[$i]";
+	}
+
+	?>
+});
+
+
+
+
+// Insertion de la ligne et de la proposition du joueur
+//<?php 
+// Ligne
+//$insert_ligne = "INSERT INTO LIGNE VALUES (Seq_ligne_idlignel\.nextval, nbLignes+1, TEMPS_A TRAVAILLER,
+//compteurrouge, compteurblanc, idPartie, $_SESSION['pseudo_connex'])";
+
+// Proposition joueur
+//for ($i = 1; $i < coool.length ;)
+//$_proposition_joueur
+
+
+
+//?>
+
+
+    alert('Billes rouges : '+compteurrouge + ' '+ compteurblanc + 'billes blanches');
+
+    if(compteurrouge == tableau.rows[0].cells.length){
+    	alert('Vous avez trouvé la combinaison');
+    };
+
+  
+};
+
 
 // Inserer une ligne à la fin du tableau
 function insererLigne_Fin(){
@@ -148,11 +290,13 @@ function insererLigne_Fin(){
     var tableau = document.getElementById("table_grille");
     // nombre de lignes dans la table (avant ajout de la ligne)
     var nbLignes = tableau.rows.length;
-
  
+
+	//Ajout de la ligne à la fin de la table
     ligne = tableau.insertRow(-1); // création d'une ligne pour ajout en fin de table
                                    // le paramètre est dans ce cas (-1)
  
+ 	ligne.setAttribute('id','ligne'+(nbLignes+1));
     // création et insertion des cellules dans la nouvelle ligne créée
 
     for (i = 0;i< tableau.rows[0].cells.length;i++){
@@ -165,10 +309,9 @@ function insererLigne_Fin(){
  		caseA.setAttribute('id','bille'+i); 
  		cell.appendChild(caseA);
  		caseA.innerHTML = "emp" + (i+1);
-		// Problème de balise
+	
     }
 };
-
 
 
 // Transfert du background de la bille selectionnée
@@ -176,6 +319,8 @@ function select_bille(elmt){
 	var cellule = document.getElementById("couleur_selectionnée");
 	cellule.style.backgroundColor =  elmt.style.backgroundColor  ;
 };
+
+
 
 
 // Transfert à la case selectionnée 
@@ -212,42 +357,6 @@ function jouer_bille(elmt){
 }
 
 
-// // Code ci-dessous marche mais n'affiche pas le texte
-
-// function nouvelleLigne() {
-	
-// 	// Recuperation de l'élément contenant la grille
-// 	var v_grille = document.getElementById("table_grille");
-
-// 	//Création d'une nouvelle ligne
-// 	var v_nouvelle_ligne = document.createElement('tr');
-
-// 	//Ajout de la ligne au tableau
-// 	v_grille.appendChild(v_nouvelle_ligne);
-
-// 	//Création d'une nouvelle case
-// 	for (i=1;i <= 4;i++){
-
-// 		var v_nouvelle_case = document.createElement('td');
-// 		v_nouvelle_ligne.appendChild(v_nouvelle_case);
-
-// 		var v_nouveau_a = document.createElement('a');
-// 		v_nouvelle_a.setAttribute('class','button');
-// 		v_nouvelle_a.setAttribute('href','#');
-		
-
-// 		v_nouvelle_case.appendChild(v_nouveau_a);
-
-// 		var text = document.createTextNode('Teest');
-// 		v_nouvelle_case.style.backgroundColor = "red";
-// 		v_nouvelle_a.appendChild(text);
-		
-		
-// 	}
-
-	
-
-// };
 
 /*les billes sont représentées par les cases d'un tableau avec une backgrounColor correspondant à la couleur de la bille
 pour la suite lorsqu'on parlera de case ce sera pour désigner la bille correspondante*/
@@ -310,6 +419,7 @@ function initialisations() {
 		}
 	}
 };
+
 
 /*on appelle la fonction*/
 initialisations();

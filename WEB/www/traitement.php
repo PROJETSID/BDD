@@ -16,20 +16,21 @@ if(isset($_POST['pseudo']))
 else $pseudo = "";
 
 //Verification du mot de passe
-if(isset($_POST['pass']))
-	$pass = (string) $_POST['pass'];
+if(isset($_POST['pass'])) 
+	$pass = $_POST['pass'];
 else $pass = ""; 
 
 //Requête SQL
 $requete_insert = "Insert into \"21400692\".Joueur(IdJoueur,pseudoJ,motdepasseJ) 
-                  VALUES (Seq_Joueur_idJoueur.nextval,'".$pseudo."','".$pass."');";
+                  VALUES (Seq_Joueur_idJoueur.nextval,'".$pseudo."','".$pass."')";
 
+// Problème avec la séquence
 
+                  
 // Envoi et execution de la requête SQL
 $sql = oci_parse($dbConn, $requete_insert);
 
-
-if (! oci_execute($sql) ){
+if (!oci_execute($sql)){
 $err = oci_error($sql);
 
   //Affichage du message d'erreur dans une fenêtre alert
