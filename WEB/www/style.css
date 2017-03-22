@@ -135,6 +135,16 @@
 				height: 30px;
 				/*background-color: pink;*/
 			}
+	#grilleJeu
+	{
+		margin-top: 20px;
+		margin-right: 300px;
+		margin-left: 300px;
+
+		background-color: red;
+
+		height: 200px;
+	}
 	#fonctionnalités
 	{
 		flex: 1;
@@ -254,6 +264,16 @@
 		margin-top: 20px;
 
 		background-color: green;
+	}
+	#tableau_classement
+	{
+		flex: 5;
+
+		margin-top: 20px;
+
+		background-color: green;
+		width: 100px;
+		height: 200px;
 	}
 
 /*utiliser des classes (plutôt que des id) pour factoriser le code ?! Bon chance*/
