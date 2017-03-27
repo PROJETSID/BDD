@@ -8,6 +8,33 @@ END;
 -- Code : OK ! 
 
 
+
+
+--PROCEDURE INSERTION_JOUEUR
+CREATE OR REPLACE PROCEDURE INSERTION_JOUEUR(pPseudoJ Joueur.PseudoJ%TYPE, 
+pmotdepasseJ JOUEUR.MOTDEPASSEJ%TYPE) IS
+
+    ecode                     NUMBER;
+    emesg                     VARCHAR(20);
+
+BEGIN 
+INSERT INTO JOUEUR(IDJOUEUR,PSEUDOJ, MOTDEPASSEJ) VALUES (SEQ_JOUEUR_IDJOUEUR.nextval,
+pPseudoJ, pmotdepasseJ);
+
+EXCEPTION
+      -- Gestion des autres erreurs possibles
+WHEN OTHERS THEN
+  ecode := SQLCODE;
+  emesg := SQLERRM;
+  DBMS_OUTPUT.PUT_LINE(TO_CHAR(ecode)||'-'||emesg);
+  ROLLBACK;
+END;
+/
+-- Code : OK ! 
+
+
+
+
 -- Création d'une partie : Ajout de la ligne numero un dans la table ligne pour le joueur
 -- Commentaire : Insertion de la ligne devrait se faire une fois que le joueur clique sur le le bouton try it
 
