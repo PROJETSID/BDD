@@ -3,20 +3,11 @@
 
 
 <!-- CODE PHP -->
-<?php
-		    //Connexion à la base
-			include("db/connect.php");
+<?php 
 
+//Connexion à la base
+include("db/connect.php");
 
-// Variable nombre d'emplacement pour un niveau
-$Requete_nb_emp = "SELECT nbemblacementsN 
-					FROM Niveau 
-					WHERE IdNiveau = $niveau ";
-
-// Variable nb billes collection
-$Requete_nb_billes_colles = "SELECT nbBillesCol 
-								FROM Collection 
-								WHERE IdCollection = (SELECT IdCollection FROM Niveau WHERE IdNiveau = $niveau)";
 
 ?>
 
@@ -33,11 +24,15 @@ $Requete_nb_billes_colles = "SELECT nbBillesCol
 		    include("head.php");
 		?>
 
+<!-- On inclut JQUERY -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
 <!-- Script du timer -->
 
 		<script language="javascript" type="text/javascript">
 
-var compte = 60;
+var compte = 60 ;
 function decompte()
 {
         if(compte <= 1) {
@@ -76,6 +71,8 @@ var timer = setInterval('decompte()',1000);
 		<div id="mettre_au_milieu_de_la_page">
 			<div id="grille_des_niveaux">
 				
+					<div id="test">
+					</div>
 
     		    <!--// <?php
 		    //include("niveau.php");
@@ -90,7 +87,7 @@ var timer = setInterval('decompte()',1000);
 					<div id="combinaison_à_trouver">
 					
 					</div>
-					<div id="grille_de_jeu">
+						<div id="grille_de_jeu">
 					<div>
 
 					</div>
@@ -99,6 +96,7 @@ var timer = setInterval('decompte()',1000);
 					<!--Code permettant de créer une grille en fonction du nombre de lignes et du nombre de
 					colonnes indiquées -->
 						<table id = "table_grille">
+
 
 						<?php
 
@@ -126,6 +124,35 @@ var timer = setInterval('decompte()',1000);
 
 				</div>
 
+				<div id="grille_de_jeu_et_combinaison">
+					<div id="combinaison_à_trouver">
+
+					<!-- Billes rouges et blanches -->
+					<br><br>
+					<table id = "table_RB">
+
+						<?php
+
+						$nbrow = 1 ;
+						for ($ii = 1 ; $ii <=$nbrow ; $ii++)
+
+						{
+							echo "<tr id = \"ligne_combi".$ii."\">";
+
+							$nbemp = 4;
+							for ($i = 1; $i <= $nbemp;$i++){
+								echo "<td style = \"background-color : white; \"  class=\"button\" id=\"rb".$i."\">a".$i."</td>";
+										}	
+							echo "</tr>";
+							
+						}
+							?> 
+
+
+						</table>
+			
+					</div>
+					</div>
 				<!-- (colonne de droite) -->
 				<!-- le timer, le score et la réserve de billes à placer (colonne de droite) -->
 
@@ -191,12 +218,14 @@ function test_combi(){
     var idligne = "ligne" + nbLignes;
     var ligne_jeu = document.getElementById(idligne).childNodes;
 
-	// Vecteurs pour stocker les couleurs et accessoirement, les positions
+	// Vecteurs pour stocker les couleurs et les positions
     var coool = [];
+    var position = [];
 	// Récupérer les différentes couleurs
     	for (i = 0; i< ligne_jeu.length;i++){
     		var cell1 = ligne_jeu[i].childNodes;
     		coool.push(cell1[0].style.backgroundColor);
+    		position.push(i);
     };
     alert(coool);
 
@@ -229,58 +258,73 @@ function test_combi(){
     };
 
 
+  alert('Billes rouges : '+compteurrouge + ' '+ compteurblanc + 'billes blanches');
 
 
-    alert('Billes rouges : '+compteurrouge + ' '+ compteurblanc + 'billes blanches');
 
-    if(compteurrouge == tableau.rows[0].cells.length){
-    	alert('Vous avez trouvé la combinaison');
+
+// Coloration des billes rouges et des billes blanches
+    var tRB = document.getElementById("table_RB");
+
+      // nombre de lignes dans la table (avant ajout de la ligne)
+   	var nbLignes_tRB = tRB.rows[0].length;
+   	ind_RB = nbLignes-1;
+
+    for (i=0;i<compteurrouge;i++){
+    	tRB.rows[ind_RB].cells[i].style.backgroundColor = 'yellow';
+  
+    };
+        for (i=compteurrouge;i<(compteurrouge+compteurblanc);i++){
+    	tRB.rows[ind_RB].cells[i].style.backgroundColor = 'blue';
+
     };
 
 
-// Envoi des données au fichier de traitement insert_ligne php
-//$.post('insert_ligne.php', {numeroL: variableToSend,
-//	tempsLigneL: variableToSend
-//	nbIndiceRougeL: compteurrouge
-//	nbIndiceBlancL: compteurblanc
-//	idPartie : variableToSend
-//	idJoueur: variableToSend
-//});
-
-
-// Envoi des données au fichier de traitement  insert_proposition_joueur php
-//$.post('insert_proposition_joueur.php', {
-//	<?php 
-	//echo "nbBilles : 4, ";
-	//for ($i=0;i < $VAR_NB_EMPLACEMENT; $i++){
-	//	echo "positionBilleLigne".$i." : $i ,
-	//	idligne".$i. " : nbLignes ,
-	//	idbilles".$i. " : coool[$i]";
-	//}
-
-//	?>
-//});
 
 
 
 
-// Insertion de la ligne et de la proposition du joueur
-//<?php 
-// Ligne
-//$insert_ligne = "INSERT INTO LIGNE VALUES (Seq_ligne_idlignel\.nextval, nbLignes+1, TEMPS_A TRAVAILLER,
-//compteurrouge, compteurblanc, idPartie, $_SESSION['pseudo_connex'])";
-
-// Proposition joueur
-//for ($i = 1; $i < coool.length ;)
-//$_proposition_joueur
+var tempsL = "teeemps";
+var idPartie = "IdPartie";
+var idJoueur = "idJoueur";
 
 
+  	// FIN DE LA PARTIE
+    if(compteurrouge == tableau.rows[0].cells.length){
+    	alert('Vous avez trouvé la combinaison');
+    	$.post('gestion_fin_partie.php', {idPartie : idPartie,idJoueur}).done(function(data) {
+    alert(data);
+});
+    };
 
-//?>
 
 
+// Envoi des données au fichier de traitement insert_ligne.php
+$.post('insert_ligne.php', {numeroL: nbLignes,
+	tempsLigneL: tempsL,
+	nbIndiceRougeL: compteurrouge,
+	nbIndiceBlancL: compteurblanc,
+	idPartie : idPartie,
+	idJoueur: idJoueur
+}).done(function(data) {
+    alert(data);
+});
+
+
+
+// Envoi des données au fichier de traitement insert_proposition_joueur.php
+$.post('insert_proposition_joueur.php', {
+	idPartie : idPartie, nbBilles : tableau.rows[0].cells.length , 
+	positionBilleLigne :  position, idligne : idligne, idbilles : coool
+}).done(function(data) {
+    alert(data);
+});
+
+   
   
 };
+
+
 
 
 // Inserer une ligne à la fin du tableau
@@ -312,8 +356,29 @@ function insererLigne_Fin(){
  		cell.appendChild(caseA);
  		caseA.innerHTML = "emp" + (i+1);
 	
-    }
+    };
+
+  //   // on récupère l'identifiant (id) de la table qui sera modifiée
+      var tab_RB = document.getElementById("table_RB");
+
+	 // //Ajout de la ligne à la fin de la table
+      ligneRB = tab_RB.insertRow(-1);
+
+     for (i = 0;i< tableau.rows[0].cells.length;i++){
+     	cell = ligneRB.insertCell(i);
+      	cell.setAttribute('style','background-color : white');
+  		cell.innerHTML = "a" + (i+1);
+	
+     }
+
+
+
 };
+
+
+
+
+
 
 
 // Transfert du background de la bille selectionnée
