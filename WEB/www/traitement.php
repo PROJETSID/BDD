@@ -8,37 +8,40 @@
 include("db/connect.php");
 
 
-// Recuperation des données
+
 
 //Verification du pseudo
 if(isset($_POST['pseudo']))
-	$pseudo = $_POST['pseudo'];
+   $pseudo = $_POST['pseudo'];
 else $pseudo = "";
 
 //Verification du mot de passe
 if(isset($_POST['pass'])) 
-	$pass = $_POST['pass'];
+   $pass = $_POST['pass'];
 else $pass = ""; 
 
-//Requête SQL
-$requete_insert = "Insert into \"21400692\".Joueur(IdJoueur,pseudoJ,motdepasseJ) 
-                  VALUES (Seq_Joueur_idJoueur.nextval,'".$pseudo."','".$pass."')";
 
-// Problème avec la séquence
 
-                  
-// Envoi et execution de la requête SQL
-$sql = oci_parse($dbConn, $requete_insert);
+$sql = "BEGIN \"21400692\".INSERTION_JOUEUR(:pseudo, :pass); END;";
+$stmt_id = oci_parse($dbConn, $sql);
+oci_bind_by_name($stmt_id, ':pseudo', $pseudo);
+oci_bind_by_name($stmt_id, ':pass', $pass);
+//oci_execute($stmt_id);
 
-if (!oci_execute($sql)){
-$err = oci_error($sql);
 
-  //Affichage du message d'erreur dans une fenêtre alert
+
+
+
+if (!oci_execute($stmt_id)){
+
+   $err = oci_error($stmt_id);
+
+ // Affichage du message d'erreur dans une fenêtre alert
    echo"<script language=\"javascript\">";
-   echo" alert(\" ".htmlentities($err['message'])." \") ;";
+   echo" alert(\" ".htmlentities($err['code'])." \") ;";   
    echo "history.back();";
    echo"</script>"; 
-
+// Chercher comment récupérer le message d'erreur
  }else{ 
    echo"<script language=\"javascript\">";
    echo" alert(\"Votre compte a bien été créé, vous pouvez désormais vous connecter.\") ;";
@@ -48,6 +51,7 @@ $err = oci_error($sql);
  ?>
 
 
+   
 
 
 <!-- Afficher le code de l'erreur
