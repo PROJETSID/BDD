@@ -108,7 +108,7 @@ var timer = setInterval('decompte()',1000);
 
 							$nbemp = 4;
 							for ($i = 1; $i <= $nbemp;$i++){
-								echo "<td id = $ii ><a href=\"javascript:void(0)\", style = \"background-color : white\" onclick =\"jouer_bille(this)\" class=\"button\" id=\"emp".$i."\">emp".$i."</a></td>";
+								echo "<td id = $ii ><a href=\"javascript:void(0)\", style = \"background-color : white\"  class=\"button\" id=\"emp".$i."\"><img src=\"\" alt=\"err1\" onclick =\"jouer_bille(this)\" /></a></td>";
 										}	
 							echo "</tr>";
 							
@@ -166,8 +166,8 @@ var timer = setInterval('decompte()',1000);
 						
 					</div>
 
-					<div id = "couleur_selectionnée" style = " width:30px; height:30px;border : solid">
-					Bille
+					<div  style = " width:30px; height:30px;border : solid">
+						<img src="" alt="err" id = "couleur_selectionnée" />
 					</div>
 
 					<!--Liste des billes de la collection -->
@@ -184,7 +184,7 @@ var timer = setInterval('decompte()',1000);
 							echo "<tr>";	
 							$nb_billes_collections = 6;
 							for ($i = 1; $i <= $nb_billes_collections;$i++){
-								echo "<td><a href=\"javascript:void(0)\", onclick=\"select_bille(this)\" class=\"button\" id=\"bille".$i."\">b".$i."</a></td>";
+								echo "<td><a href=\"javascript:void(0)\", class=\"button\" id=\"bille".$i."\"><img src=\"1.jpg\" alt=\"err\" onclick=\"select_bille(this)\" /></a></td>";
 										}	
 							echo "</tr>";	
 						}
@@ -345,16 +345,24 @@ function insererLigne_Fin(){
  	ligne.setAttribute('id','ligne'+(nbLignes+1));
     // création et insertion des cellules dans la nouvelle ligne créée
 
+
     for (i = 0;i< tableau.rows[0].cells.length;i++){
+    	//on construit une cellule du tableau qui contient <a><img /></a>
     	cell = ligne.insertCell(i);
     	cell.setAttribute('id',nbLignes+1);
 		var caseA = document.createElement('a');
+		var caseImg = document.createElement('img');
+
  		caseA.setAttribute('class','button');
  		caseA.setAttribute('href','javascript:void(0)');
- 		caseA.setAttribute('onclick','jouer_bille(this)');
- 		caseA.setAttribute('id','bille'+i); 
+ 		caseA.setAttribute('id','bille'+i);
+
+		caseImg.setAttribute('src','""');
+		caseImg.setAttribute('alt','err');
+ 		caseImg.setAttribute('onclick','jouer_bille(this)');
+
+ 		caseA.appendChild(caseImg);
  		cell.appendChild(caseA);
- 		caseA.innerHTML = "emp" + (i+1);
 	
     };
 
@@ -384,7 +392,7 @@ function insererLigne_Fin(){
 // Transfert du background de la bille selectionnée
 function select_bille(elmt){
 	var cellule = document.getElementById("couleur_selectionnée");
-	cellule.style.backgroundColor =  elmt.style.backgroundColor  ;
+	cellule.src =  elmt.src ;
 };
 
 
@@ -399,7 +407,7 @@ function jouer_bille(elmt){
 	var idname = elmt.parentNode;
 	var numligne = idname.getAttribute('id');
 
-	    // on récupère l'identifiant (id) de la table qui sera modifiée
+	// on récupère l'identifiant (id) de la table qui sera modifiée
     var tableau = document.getElementById("table_grille");
     // nombre de lignes dans la table (avant ajout de la ligne)
     var nbLignes = tableau.rows.length;
@@ -407,18 +415,19 @@ function jouer_bille(elmt){
 
 
 	// Si on a pas selectionné de couleur
-	if (cellule.style.backgroundColor == 'white'){
+	if (cellule.src == "err"){
 		alert('Veuillez sélectionner une couleur ! ');
 	}
 	// Si on clique sur une mauvaise ligne
+	///////////////err
 	else if (numligne != nbLignes)
 	{
 		alert('Merci de cliquer sur la bonne ligne ! ');
 	}
 	else {
 
-	elmt.style.backgroundColor =  cellule.style.backgroundColor;
-	cellule.style.backgroundColor = 'white' ; 
+	elmt.src =  cellule.src;
+	cellule.src = "" ; 
 	}
 
 }
@@ -477,7 +486,7 @@ function initialisations() {
 	/*on initialise la grille de jeu*/
 	for (var i = 1; i < NB_BILLES; i++) {
 		/*on calcule l'id de l'emplacement*/
-		nom_emp = "emp" + i;
+		nom_emp = "err" + i;
 		/*on récupère la case et on lui affecte une fonction*/
 		var emplacement = document.getElementById(nom_emp);
 		emplacement.onclick = function () {
