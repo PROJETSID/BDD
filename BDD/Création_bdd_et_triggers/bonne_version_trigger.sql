@@ -8,6 +8,57 @@ END;
 -- Code : OK ! 
 
 
+-- Procédure d'insertion d'une partie
+CREATE OR REPLACE PROCEDURE INSERTION_PARTIE(pIdjoueur JOUEUR.Idjoueur%TYPE, pidNiveau NIVEAU.idNiveau%TYPE) IS
+
+-- Declaration de variables
+vIdhistorique HISTORIQUE.IdHistorique%TYPE;
+vIdpartie PARTIE.Idpartie%TYPE;
+ecode NUMBER ;
+emesg VARCHAR(20);
+
+
+-- Debut de la procédure
+BEGIN
+
+-- On récupère le dernier id_historique pour le joueur
+SELECT max(idhistorique) INTO vIdhistorique
+FROM HISTORIQUE
+WHERE Idjoueur = pIdjoueur ;
+
+IF vIdhistorique IS NULL THEN
+vIdhistorique := 0 ;
+END IF;
+
+-- Insertion dans historique : doit avoir lieu avant l'insertion dans partie
+INSERT INTO HISTORIQUE VALUES (vIdhistorique,pidjoueur);
+
+
+-- Insertion dans partie
+INSERT INTO PARTIE(Idpartie,datep, idhistorique, idniveau) VALUES
+(SEQ_PARTIE_IDPARTIE.nextval, sysdate, vIdhistorique, pidNiveau);
+
+
+-- On récupère le idpartie correspondant au bon historique stocké
+SELECT P.IDpartie INTO vIdpartie
+FROM partie P, historique H
+WHERE P.IdHistorique = H.IdHistorique
+AND H.Idjoueur = pIdJoueur
+AND H.IdHistorique = vIdhistorique;
+
+
+-- Insertion dans la table JOUER
+INSERT INTO JOUER VALUES (vIdpartie, pIdJoueur);
+
+
+--Gestion des exceptions
+EXCEPTION
+WHEN OTHERS THEN
+  ecode := SQLCODE;
+  emesg := SQLERRM;
+  DBMS_OUTPUT.PUT_LINE(TO_CHAR(ecode)||'-'||emesg);
+  ROLLBACK;
+END;
 
 
 --PROCEDURE INSERTION_JOUEUR
