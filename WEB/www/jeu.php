@@ -108,7 +108,7 @@ var timer = setInterval('decompte()',1000);
 
 							$nbemp = 4;
 							for ($i = 1; $i <= $nbemp;$i++){
-								echo "<td id = $ii ><a href=\"javascript:void(0)\", style = \"background-color : white\"  class=\"button\" id=\"emp".$i."\"><img src=\"\" alt=\"err1\" onclick =\"jouer_bille(this)\" /></a></td>";
+								echo "<td id = $ii ><a href=\"javascript:void(0)\", style = \"background-color : white\"  class=\"button\" id=\"emp".$i."\"><img src=\"images/Collections/4_billes/Gris/1.jpg\" alt=\"err1\" onclick =\"jouer_bille(this)\" /></a></td>";
 										}	
 							echo "</tr>";
 							
@@ -118,6 +118,8 @@ var timer = setInterval('decompte()',1000);
 
 						</table>
 					</div>
+
+					/images/2.jpg
 
 					<div>
 					</div>
@@ -358,7 +360,7 @@ function insererLigne_Fin(){
  		caseA.setAttribute('id','bille'+i);
 
 		caseImg.setAttribute('src','""');
-		caseImg.setAttribute('alt','err');
+		caseImg.setAttribute('alt','rien');
  		caseImg.setAttribute('onclick','jouer_bille(this)');
 
  		caseA.appendChild(caseImg);
@@ -420,10 +422,10 @@ function jouer_bille(elmt){
 	}
 	// Si on clique sur une mauvaise ligne
 	///////////////err
-	else if (numligne != nbLignes)
-	{
-		alert('Merci de cliquer sur la bonne ligne ! ');
-	}
+	// else if (numligne != nbLignes)
+	// {
+	// 	alert('Merci de cliquer sur la bonne ligne ! ');
+	// }
 	else {
 
 	elmt.src =  cellule.src;
