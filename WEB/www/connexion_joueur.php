@@ -9,7 +9,7 @@ include("db/connect.php");
 
 // Récupération des données
 
-//Pseuo
+//Pseudo
 if(isset($_POST['pseudo_connex']))
 	$pseudo_connex = $_POST['pseudo_connex'];
 else $pseudo_connex = "";
@@ -64,16 +64,14 @@ else {
 
          //Creation de la session de jeu
          session_start();
-         $_SESSION['pseudo_connex'] = $pseudo_connex;
-         $_SESSION['pass_connex'] = $pass_connex;
 
+          $_SESSION['pseudo_connex'] = $pseudo_connex;
+         //  Message de bienvenue et redirection vers la page de jeu
+          echo"<script language=\"javascript\">";
+          echo" alert(\" Bienvenue  $pseudo_connex !  \") ;";
+          echo "window.location.replace(\"http://localhost/mastermind/typeDePartie.php\")";
+          echo"</script>";
 
-         // Message de bienvenue et redirection vers la page de jeu
-         echo"<script language=\"javascript\">";
-         echo" alert(\" Bienvenue $pseudo_connex !  \") ;";
-         echo "window.location.replace(\"http://localhost/mastermind/niveau.php\")";
-         echo"</script>";
-         
          };
 
 }
