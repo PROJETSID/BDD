@@ -18,7 +18,7 @@ include("db/connect.php");
 
         <meta charset="utf-8" />
 
-        <title>Jeu</title>
+        <title>JeuD</title>
         <link rel="stylesheet" href="style.css" />
 		<?php
 		    include("head.php");
