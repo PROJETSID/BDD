@@ -179,18 +179,50 @@ var timer = setInterval('decompte()',1000);
 
 						<table id="testAppendChild">
 						<?php
+							
+							include("db/connect.php");
+	                        $Requete_nb_billes_colles = "SELECT nbBillesCol 
+									FROM \"21400692\".Collection 
+									WHERE IdCollection = (SELECT IdCollection FROM \"21400692\".Niveau WHERE IdNiveau = 50)";
+							$req_nb_billes = oci_parse($dbConn,$Requete_nb_billes_colles);
+	        								oci_execute($req_nb_billes);
+	        								if(!oci_execute($req_nb_billes)){
+	           								 echo oci_error($req_nb_billes);
+	        								}
+							
+							$req_urlB = "select urlB from \"21400692\".BILLE B WHERE B.IDBILLE IN (SELECT C.IDBILLE FROM \"21400692\".COMPOSER C WHERE C.IDCOLLECTION =(SELECT N.IDCOLLECTION FROM \"21400692\".NIVEAU N WHERE N.IDNIVEAU =50))";
+							$req_url_Billes = oci_parse($dbConn, $req_urlB);
+												oci_execute($req_url_Billes);
+												if (!oci_execute($req_url_Billes)) {
+													oci_error($req_url_Billes);
+												}
+							/*
+							pour afficher les url *****bonne chance *****
+							while (oci_fetch($req_url_Billes)) {
+								for ($i = 1; $i <= 10;$i++){
+								echo "<td>".oci_result($req_url_Billes, 1)."</td>";
+								}
+							}*/
 
-						$nbrow = 1 ;
-						for ($ii = 1 ; $ii <=$nbrow ; $ii++)
-						{
-							echo "<tr>";	
-							$nb_billes_collections = 6;
-							for ($i = 1; $i <= $nb_billes_collections;$i++){
-								echo "<td><a href=\"javascript:void(0)\", class=\"button\" id=\"bille".$i."\"><img src=\"1.jpg\" alt=\"err\" onclick=\"select_bille(this)\" /></a></td>";
-										}	
-							echo "</tr>";	
-						}
-							?> 
+							/* à adapter le src des url ci dessous pour recuperer les imanges
+							voici un exemple du resultat de la requete sous sql developer    ***:/Collections/10_billes/Yeux/10.jpg***
+							*/
+							$nbrow = 1 ;
+							while (oci_fetch($req_nb_billes)) {
+									for ($ii = 1 ; $ii <=$nbrow ; $ii++)
+								{
+									echo "<tr>";	
+									$nb_billes_collections = oci_result($req_nb_billes, 1);
+									for ($i = 1; $i <= $nb_billes_collections;$i++){
+										echo "<td><a href=\"javascript:void(0)\",  class=\"button\" id=\"bille".$i."\"><img src=\"images/Collections/4_billes/Rayures/2.jpg\" alt=\"err\" onclick=\"select_bille(this)\" /></a></td>";
+												}	
+									echo "</tr>";	
+								}
+							}
+						
+
+							?>
+
 							<tr>	
 							</tr>
 						</table>
