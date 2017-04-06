@@ -4,108 +4,9 @@
 
 <!-- CODE PHP -->
 <?php 
+
 //Connexion à la base
 include("db/connect.php");
-
-// On commence la session
-session_start();
-
-
-// Recuperation du niveau
-$niveau = $_POST['niveau'];
-echo $niveau;
-$_SESSION['idjoueur'] = 111 ; 
-echo $_SESSION['idjoueur'];
-
-$pseudo = 'Joueur27'; 
-/*// INSERTION DE LA PARTIE
-$req_partie = "BEGIN \"21400692\".INSERTION_PARTIE(:pseudo, :niv);END;";
-$stmt = oci_parse($dbConn, $req_partie);
-oci_bind_by_name($stmt, ':pseudo', $pseudo);
-oci_bind_by_name($stmt, ':niv', $niveau);
-
-	 if(!oci_execute($stmt)){
-	    echo oci_error($stmt)['message'];
-	      echo 'Marche pas'; 
-	     }else{
-		echo 'ça marche !';
-};
-*/
-
-
-
-
-
-
-
-
-// Selection du nombre de billes de la collection
-$Requete_nb_billes_colles = "SELECT nbBillesCol 
-							FROM \"21400692\".Collection 
-							WHERE IdCollection = (SELECT IdCollection 
-							FROM \"21400692\".Niveau 
-							WHERE IdNiveau = $niveau)";
-
-
-$req_nb_billes = oci_parse($dbConn,$Requete_nb_billes_colles);
-	 if(!oci_execute($req_nb_billes)){
-	     // echo oci_error($req_nb_billes);
-	      echo 'Marche pas'; 
-	     }else{
-		echo 'ça marche !';
-	     };
-
-
-// Selection des URL de billes de la collection
-$Requete_select_billes = "SELECT urlB FROM \"21400692\".BILLE , \"21400692\".COMPOSER 
-							WHERE Bille.Idbille = Composer.idbille
-              				AND IDcollection = (SELECT IDCOLLECTION 
-              										FROM \"21400692\".NIVEAU 
-              										WHERE IDNIVEAU =$niveau)";
-
-
-$req_select_billes = oci_parse($dbConn,$Requete_select_billes);
-	 if(!oci_execute($req_select_billes)){
-	     // echo oci_error($req_nb_billes);
-	      echo 'Marche pas'; 
-	     }else{
-
-	echo 'ça marche !';
-
-// Affichage des urls
-		// Stockage des urls dans une liste
-		while(oci_fetch($req_select_billes)){
-			//echo oci_result($req_select_billes, 'URLB'); 
-			$url[] = oci_result($req_select_billes, 'URLB');
-	     };
-
-	    // echo $url[0];
-
-		};
-
-
-$Requete_emp_time = "SELECT nbEmplacementsN, timerN 
-							FROM \"21400692\".NIVEAU 
-              				WHERE IDNIVEAU =$niveau";
-
-
-$req_emp_time = oci_parse($dbConn,$Requete_emp_time);
-	 if(!oci_execute($req_emp_time)){
-	     // echo oci_error($req_nb_billes);
-	      echo 'Marche pas'; 
-	     }else{
-		echo 'ça marche !';
-
-		while(oci_fetch($req_emp_time)){
-		$nbemp = oci_result($req_emp_time, 'NBEMPLACEMENTSN'); 
-		$timer = oci_result($req_emp_time, 'TIMERN');
-
-		// Affichage de l'emplacement et du timer
-		//echo  $nbemp;
-		//echo  $timer;
-	     };
-
-	     };
 
 
 ?>
@@ -117,7 +18,7 @@ $req_emp_time = oci_parse($dbConn,$Requete_emp_time);
 
         <meta charset="utf-8" />
 
-        <title>JeuD</title>
+        <title>Jeu</title>
         <link rel="stylesheet" href="style.css" />
 		<?php
 		    include("head.php");
@@ -131,7 +32,7 @@ $req_emp_time = oci_parse($dbConn,$Requete_emp_time);
 
 		<script language="javascript" type="text/javascript">
 
-var compte = <?php echo $timer ?>;
+var compte = 60 ;
 function decompte()
 {
         if(compte <= 1) {
@@ -164,6 +65,7 @@ var timer = setInterval('decompte()',1000);
 
     <body onload="initialisations();decompte();">
    
+
 
 <br>
 		<div id="mettre_au_milieu_de_la_page">
@@ -204,8 +106,9 @@ var timer = setInterval('decompte()',1000);
 						{
 							echo "<tr id = \"ligne".$ii."\">";
 
+							$nbemp = 4;
 							for ($i = 1; $i <= $nbemp;$i++){
-								echo "<td id = $ii ><a href=\"javascript:void(0)\", style = \"background-image : url(\"images/Collections/4_billes/Gris/1.jpg\")\"  class=\"button\" id=\"emp".$i."\"><img src=\"images/Collections/4_billes/Gris/1.jpg\" alt=\"err1\" onclick =\"jouer_bille(this)\" /></a></td>";
+								echo "<td id = $ii ><a href=\"javascript:void(0)\", style = \"background-color : white\" onclick =\"jouer_bille(this)\" class=\"button\" id=\"emp".$i."\">emp".$i."</a></td>";
 										}	
 							echo "</tr>";
 							
@@ -215,8 +118,6 @@ var timer = setInterval('decompte()',1000);
 
 						</table>
 					</div>
-
-		
 
 					<div>
 					</div>
@@ -238,9 +139,9 @@ var timer = setInterval('decompte()',1000);
 						{
 							echo "<tr id = \"ligne_combi".$ii."\">";
 
+							$nbemp = 4;
 							for ($i = 1; $i <= $nbemp;$i++){
 								echo "<td style = \"background-color : white; \"  class=\"button\" id=\"rb".$i."\">a".$i."</td>";
-								// remplacer les a1 par des &nbsp
 										}	
 							echo "</tr>";
 							
@@ -262,48 +163,32 @@ var timer = setInterval('decompte()',1000);
 					</div>
 
 					<div id="score_joueur">
-						
+						Joueur1
 					</div>
 
-					<div  style = " width:30px; height:30px;border : solid">
-						<img src="" alt="err" id = "couleur_selectionnée" />
+					<div id = "couleur_selectionnée" style = " width:30px; height:30px;border : solid">
+					Bille
 					</div>
 
 					<!--Liste des billes de la collection -->
 					<div id="bille_à_placer">
 
-					<td><button onclick="insererLigne_Fin();test_combi()" action = "insert_prop.php">Jouer</button></td>
+					<td><button onclick="insererLigne_Fin();test_combi();changer_joueur()">Jouer</button></td>
 
 						<table id="testAppendChild">
 						<?php
-							
-	                       
-							$req_nb_billes = oci_parse($dbConn,$Requete_nb_billes_colles);
-	        								oci_execute($req_nb_billes);
-	        								if(!oci_execute($req_nb_billes)){
-	           								 echo oci_error($req_nb_billes);
-	        								}
 
-
-							
-							$nbrow = 1 ;
-							while (oci_fetch($req_nb_billes)) {
-									for ($ii = 1 ; $ii <=$nbrow ; $ii++)
-								{
-									echo "<tr>";	
-									$nb_billes_collections = oci_result($req_nb_billes, 1);
-
-									for ($i = 1; $i <= $nb_billes_collections;$i++){
-										$ind = ($i-1);
-										echo "<td><a href=\"javascript:void(0)\",  class=\"button\" id=\"bille".$i."\"><img src=\"images".$url[$ind]."\" alt=\"err\" onclick=\"select_bille(this)\" /></a></td>";
-												}	
-									echo "</tr>";	
-								}
-							}
-						
-
-							?>
-
+						$nbrow = 1 ;
+						for ($ii = 1 ; $ii <=$nbrow ; $ii++)
+						{
+							echo "<tr>";	
+							$nb_billes_collections = 6;
+							for ($i = 1; $i <= $nb_billes_collections;$i++){
+								echo "<td><a href=\"javascript:void(0)\", onclick=\"select_bille(this)\" class=\"button\" id=\"bille".$i."\">b".$i."</a></td>";
+										}	
+							echo "</tr>";	
+						}
+							?> 
 							<tr>	
 							</tr>
 						</table>
@@ -314,14 +199,7 @@ var timer = setInterval('decompte()',1000);
 
 		</div>
 
-
-
-
-
 <script>
-
-
-
 
 
 // Test de la combinaison
@@ -340,16 +218,13 @@ function test_combi(){
     var idligne = "ligne" + nbLignes;
     var ligne_jeu = document.getElementById(idligne).childNodes;
 
-
-    alert(ligne_jeu[1].childNodes[0].childNodes[0].src);
 	// Vecteurs pour stocker les couleurs et les positions
     var coool = [];
     var position = [];
 	// Récupérer les différentes couleurs
     	for (i = 0; i< ligne_jeu.length;i++){
-    		var image = ligne_jeu[i].childNodes[0].childNodes[0].src;
-    		var image_trunc = image.replace("http://localhost/mastermind/images", "");
-    		coool.push(image_trunc);
+    		var cell1 = ligne_jeu[i].childNodes;
+    		coool.push(cell1[0].style.backgroundColor);
     		position.push(i);
     };
     alert(coool);
@@ -357,9 +232,7 @@ function test_combi(){
 
 // Initialisation d'une combinaison au hasard
 
-// A adapter en fonction du niveau
-	var combi = ["/Collections/4_billes/Gris/1.jpg","/Collections/4_billes/Gris/3.jpg","/Collections/4_billes/Gris/2.jpg","/Collections/4_billes/Gris/4.jpg"];
-alert(combi);
+	var combi = ["yellow","crimson","darkgray","blue"];
 
 
 
@@ -385,7 +258,7 @@ alert(combi);
     };
 
 
- alert('Billes rouges : '+compteurrouge + ' '+ compteurblanc + 'billes blanches');
+  alert('Billes rouges : '+compteurrouge + ' '+ compteurblanc + 'billes blanches');
 
 
 
@@ -409,9 +282,11 @@ alert(combi);
 
 
 
+
+
 var tempsL = "teeemps";
 var idPartie = "IdPartie";
-var idJoueur = <?php echo '"'.$pseudo.'"' ?>;
+var idJoueur = "idJoueur";
 
 
   	// FIN DE LA PARTIE
@@ -430,7 +305,7 @@ $.post('insert_ligne.php', {numeroL: nbLignes,
 	nbIndiceRougeL: compteurrouge,
 	nbIndiceBlancL: compteurblanc,
 	idPartie : idPartie,
-	joueur: idJoueur
+	idJoueur: idJoueur
 }).done(function(data) {
     alert(data);
 });
@@ -440,9 +315,7 @@ $.post('insert_ligne.php', {numeroL: nbLignes,
 // Envoi des données au fichier de traitement insert_proposition_joueur.php
 $.post('insert_proposition_joueur.php', {
 	idPartie : idPartie, nbBilles : tableau.rows[0].cells.length , 
-	positionBilleLigne :  position, 
-	//idligne : idligne, 
-	idbilles : coool
+	positionBilleLigne :  position, idligne : idligne, idbilles : coool
 }).done(function(data) {
     alert(data);
 });
@@ -472,24 +345,16 @@ function insererLigne_Fin(){
  	ligne.setAttribute('id','ligne'+(nbLignes+1));
     // création et insertion des cellules dans la nouvelle ligne créée
 
-
     for (i = 0;i< tableau.rows[0].cells.length;i++){
-    	//on construit une cellule du tableau qui contient <a><img /></a>
     	cell = ligne.insertCell(i);
     	cell.setAttribute('id',nbLignes+1);
 		var caseA = document.createElement('a');
-		var caseImg = document.createElement('img');
-
  		caseA.setAttribute('class','button');
  		caseA.setAttribute('href','javascript:void(0)');
- 		caseA.setAttribute('id','bille'+i);
-
-		caseImg.setAttribute('src','""');
-		caseImg.setAttribute('alt','rien');
- 		caseImg.setAttribute('onclick','jouer_bille(this)');
-
- 		caseA.appendChild(caseImg);
+ 		caseA.setAttribute('onclick','jouer_bille(this)');
+ 		caseA.setAttribute('id','bille'+i); 
  		cell.appendChild(caseA);
+ 		caseA.innerHTML = "emp" + (i+1);
 	
     };
 
@@ -519,7 +384,7 @@ function insererLigne_Fin(){
 // Transfert du background de la bille selectionnée
 function select_bille(elmt){
 	var cellule = document.getElementById("couleur_selectionnée");
-	cellule.src =  elmt.src ;
+	cellule.style.backgroundColor =  elmt.style.backgroundColor  ;
 };
 
 
@@ -534,37 +399,40 @@ function jouer_bille(elmt){
 	var idname = elmt.parentNode;
 	var numligne = idname.getAttribute('id');
 
-	// on récupère l'identifiant (id) de la table qui sera modifiée
+	    // on récupère l'identifiant (id) de la table qui sera modifiée
     var tableau = document.getElementById("table_grille");
     // nombre de lignes dans la table (avant ajout de la ligne)
     var nbLignes = tableau.rows.length;
 
+
+
 	// Si on a pas selectionné de couleur
-	if (cellule.src == "err"){
+	if (cellule.style.backgroundColor == 'white'){
 		alert('Veuillez sélectionner une couleur ! ');
 	}
 	// Si on clique sur une mauvaise ligne
-
-	// else if (numligne != nbLignes)
-	// {
-	// 	alert('Merci de cliquer sur la bonne ligne ! ');
-	// }
+	else if (numligne != nbLignes)
+	{
+		alert('Merci de cliquer sur la bonne ligne ! ');
+	}
 	else {
-	elmt.src =  cellule.src;
-	cellule.src = "" ; 
+
+	elmt.style.backgroundColor =  cellule.style.backgroundColor;
+	cellule.style.backgroundColor = 'white' ; 
 	}
 
-}
+};
 
 
+function changer_joueur(){
+	joueur = document.getElementById("score_joueur");
+	if (joueur.innerHTML.indexOf("Joueur1") > -1){
+	joueur.innerHTML = "Joueur2";
+	} else if(joueur.innerHTML.indexOf("Joueur2") > -1){
+	joueur.innerHTML = "Joueur1";
+	}
 
-
-
-
-
-
-
-
+};
 
 /*les billes sont représentées par les cases d'un tableau avec une backgrounColor correspondant à la couleur de la bille
 pour la suite lorsqu'on parlera de case ce sera pour désigner la bille correspondante*/
@@ -618,7 +486,7 @@ function initialisations() {
 	/*on initialise la grille de jeu*/
 	for (var i = 1; i < NB_BILLES; i++) {
 		/*on calcule l'id de l'emplacement*/
-		nom_emp = "err" + i;
+		nom_emp = "emp" + i;
 		/*on récupère la case et on lui affecte une fonction*/
 		var emplacement = document.getElementById(nom_emp);
 		emplacement.onclick = function () {

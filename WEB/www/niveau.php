@@ -21,6 +21,16 @@ session_start(); // A integrer afin d'avoir accès aux variables de sessions
 
 		    //Connexion à la base
 			include("db/connect.php");
+			 session_start();
+
+			 // Si un jour n'est pas connecté, alors il sera redirigé vers la page d'authentification
+/*			if(!isset($_SESSION['pseudo_connex']) && empty($_SESSION['pseudo_connex'])){
+				echo"<script language=\"javascript\">";
+    			echo" alert(\"Vous n'êtes pas connecté, merci de vous connecter !\") ;";
+    			echo"document.location.href=\"http://localhost/mastermind/authentification.php\"";
+    			echo"</script>";
+			};*/
+			
 		?>
 
 

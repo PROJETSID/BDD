@@ -20,7 +20,7 @@
 
     <body>
 	<div id="mettre_au_milieu_de_la_page">
-	<input type="submit" value="Mono Joueur" onclick="document.location.href='niveau.php';">
+	<input type="submit" value="Mono Joueur" onclick="document.location.href='form_niveau.php';">
 	<input type="submit" value="Multi Joueur" onclick="document.location.href='authentification2.php';">
 	</div>
     </body>

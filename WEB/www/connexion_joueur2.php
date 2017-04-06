@@ -68,7 +68,7 @@ else {
          //  Message de bienvenue et redirection vers la page de jeu
           echo"<script language=\"javascript\">";
           echo" alert(\" Multijoueur  $pseudoj1  $pseudo_connex !  \") ;";
-          echo "window.location.replace(\"http://localhost/mastermind/niveau.php\")";
+          echo "window.location.replace(\"http://localhost/mastermind/form_niveau_multijoueur.php\")";
           echo"</script>";
 
           // Créer une page de gestion niveau_multi.php
