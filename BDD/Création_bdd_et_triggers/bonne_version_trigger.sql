@@ -376,15 +376,14 @@ CREATE OR REPLACE TRIGGER tbi_Partie
 CREATE OR REPLACE PROCEDURE Rejouer(PidJoueur Joueur.idJoueur%TYPE,
   Pidpartie Partie.idPartie%TYPE)
   IS
-  
+    --une ligne
     CURSOR C1 IS
       SELECT L.idlignel, L.numerol, L.tempslignel, L.nbindicerougel,L.nbindiceblancl
       FROM Ligne L
       WHERE L.idPartie= Pidpartie
       AND L.idJoueur  = PidJoueur
-      ORDER BY L.numeroL ;
-        
-      
+      ORDER BY L.numeroL ; 
+    --une proposition joueur
     CURSOR C2(PidLigne Ligne.idLigneL%TYPE)
     IS
       SELECT PJ.positionbilleligne, PJ.idbille, B.urlb
@@ -393,15 +392,13 @@ CREATE OR REPLACE PROCEDURE Rejouer(PidJoueur Joueur.idJoueur%TYPE,
       AND PJ.idbille = b.idBille
       ORDER BY Pj.positionBilleLigne
       ;
-      
-      
   BEGIN
     FOR C1_ligne IN C1
     LOOP
     -- Affichage de l'ID de la ligne
       DBMS_OUTPUT.PUT_LINE(C1_ligne.idLigneL);
       
-      -- Affichage de la position de la bille, de l'id dela bille 
+      -- Affichage de la position de la bille, de l'id de la bille 
       --- ainsi que de son URL
       FOR C2_LIGNE IN C2(C1_ligne.idLigneL)
       LOOP
