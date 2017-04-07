@@ -54,4 +54,4 @@ values (1,1);
 
 --test
 set SERVEROUTPUT ON;
-exec Rejouer(1,1);
+Select Rejouer(1,1) from dual;
