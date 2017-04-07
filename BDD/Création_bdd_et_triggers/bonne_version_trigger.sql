@@ -392,6 +392,7 @@ CREATE OR REPLACE PROCEDURE Rejouer(PidJoueur Joueur.idJoueur%TYPE,
       AND PJ.idbille = b.idBille
       ORDER BY Pj.positionBilleLigne
       ;
+      retour Varchar;
   BEGIN
     FOR C1_ligne IN C1
     LOOP
