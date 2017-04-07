@@ -387,7 +387,7 @@ alert(combi);
 
  alert('Billes rouges : '+compteurrouge + ' '+ compteurblanc + 'billes blanches');
 
-
+    alert('Billes rouges : '+compteurrouge + ' '+ compteurblanc + 'billes blanches');
 
 
 // Coloration des billes rouges et des billes blanches
