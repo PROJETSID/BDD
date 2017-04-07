@@ -46,7 +46,12 @@ Insert into Proposition_Joueur
 values (3,11,2);
 Insert into Proposition_Joueur
 values (4,11,4);
-
+--jouer
 Insert into Jouer
 values (1,1);
 
+
+
+--test
+set SERVEROUTPUT ON;
+exec Rejouer(1,1);
