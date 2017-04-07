@@ -12,3 +12,7 @@ Utilisateurs Linux
 
 Utilisateurs MacOS
 - ReadMe non disponible à ce jour
+
+
+A FAIRE LUNDI MATIN QUAND ON CONNAITRA L'ORGANISATION DE L'ARCHIVE !!!
+- description des différents répertoires et fichier
