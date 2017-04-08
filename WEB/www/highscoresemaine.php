@@ -34,6 +34,29 @@
                 <!-- tableaux qui affichent les meilleurs joueurs (plus haut score) -->
                 <div id="tableau2">
 			   <p>les high scores du la semaine</p>
+				<?php
+				$Req_score = "SELECT * FROM \"21400692\".HighscoreSemaine";
+
+				$req_select = oci_parse($dbConn,$Req_score);
+	 			if(!oci_execute($req_select)){
+	   			
+	   			   echo 'ERREUR D\'EXÉCUTION'; 
+	    				 }
+				else{
+
+				echo 'REQUÊTE EXÉCUTÉ AVEC SUCCÈS !';
+
+				echo '<br>Idjoueur Score';
+				while(oci_fetch($req_select)){
+					echo '<br>';
+					echo oci_result($req_select,'IDJOUEUR').'&nbsp;&nbsp;&nbsp;';
+					echo oci_result($req_select,'SCOREP').'<br>'; 
+				  
+				     };
+
+
+					};
+			?>
                 </div>
             </div>
         </div>
