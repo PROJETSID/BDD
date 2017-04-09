@@ -9,47 +9,54 @@
         <title>Historique</title>
         <link rel="stylesheet" href="style.css" />
 		 <?php
+
+		 //Connexion à la base
+include("db/connect.php");
+		 session_start(); 
+
+
+			$pseudo = $_SESSION['pseudo_connex'];
 		    include("head.php");
+		    
+
+			    // On stocke toute les parties que le joueur a joué
+			$requete_select_histo = "SELECT idpartie FROM \"21400692\".JOUER
+			WHERE idjoueur = (Select idjoueur from \"21400692\".JOUEUR where pseudoj = '$pseudo')";
+
+			$req_histo = oci_parse($dbConn,$requete_select_histo);
+
+
 		?>
     	<div id="mettre_au_milieu_de_la_page">
 	<p> Veuillez choisir une partie dans la liste suivante : </p></br>
 	</div>
 	<div id="mettre_au_milieu_de_la_page">
-	<form>
-	<select name="nom" size="1">
-	<option value="0">Choix de la partie à rejouer</option>
-	<script type="text/javascript">
-	var nbPartie=20
-	for (i=1; i<nbPartie; i++){document.write("<option>"+"Partie"+i+"</option>")}	
-	</script>
-	</select>
+	   <form method="post" action="RejouerPartie.php">
+	
+        <?php
+
+        if(!oci_execute($req_histo))
+        {
+            echo oci_error($req_histo);
+        }
+
+        echo "<select id='partie' name='partie' size='1'>";
+
+        echo "<option value='choisir un partie' id='to_hide'> Choisir une partie </option>";
+
+        while (oci_fetch($req_histo))
+        {
+        echo "<option  value=" . oci_result($req_histo,1) . ">" . oci_result($req_histo,1) . "</option>";
+        }
+
+        echo "</select>";
+        
+        ?>
+
+        	 <input type='submit' value="Rejouer" />
 	</form>
 	</div>
-	<div id="mettre_au_milieu_de_la_page">
-	<input type="submit" value="Rejouer" onclick="document.location.href='RejouerPartie.php';">
-	</div>
-	<?php
-	/*$conn=oci_connect('21607258','--mdp--','ntelline.cict.fr');
-	if (!$conn){echo"non connecté au server"}
-	$tab=array();
-	for (i=1; i<nbPartie; i++){ 
-	$tab[i]<=array();
-	$Billes=oci_parse($conn,
-	'select idBille from Ligne L where L.idJoueur="PseudoDuJoueur" and L.idPartie="Partie_sur_laquelle_Le_Joueur_a_cliqué"
-	 order by numeroL, positionBilleLigne');
-	oci_execute($Billes);
-	var $j=1
-	While ($row=oci_fetch_array($billes,OCI_NUM)) !=false){
-		if($j<5){
-		$j++
-		echo $row[0]
-		}
-		else{
-		$j=1
-		echo"</br>"
-		}
-	}*/
-	?>
+
     </head>
     <body>
     </body>

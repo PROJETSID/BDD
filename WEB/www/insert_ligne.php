@@ -12,26 +12,16 @@ $idPartie = $_POST['idPartie'];
 $joueur= $_POST['joueur'];
 
 
-// Requete d'insertion de la ligne
-$requete_ligne =  "INSERT INTO \"21400692\".LIGNE(numeroL, tempsLignel,nbindicerougel, nbIndiceBlancL, idpartie,idjoueur) VALUES ($numeroL,sysdate,$nbIndiceRougeL,$nbIndiceBlancL,13,111)";
-
-
-
-echo $requete_ligne;
-
-
-
-//Envoi de la requête
-// $req_l = oci_parse($dbConn, $requete_ligne);
-
-// if (!oci_execute($req_l) ){
-//     $err = oci_error($req_l);
-//   //Affichage du message d'erreur dans une fenêtre alert
-//   	 echo $err['message'];
-//  }else{
-//     echo "Ca marche !"; 
-//  };
-
-// 
+// INSERTION DE LA LIGNE
+$req_ligne = "BEGIN \"21400692\".INSERTION_LIGNE(:numL, :nbrouge, :nbblanc, :idpartie, :idjoueur);END;";
+$stmt = oci_parse($dbConn, $req_ligne);
+oci_bind_by_name($stmt, ':numL', $numeroL);
+oci_bind_by_name($stmt, ':nbrouge', $nbIndiceRougeL);
+oci_bind_by_name($stmt, ':nbblanc', $nbIndiceBlancL);
+oci_bind_by_name($stmt, ':idpartie', $idPartie);
+oci_bind_by_name($stmt, ':idjoueur', $joueur);
+	 if(!oci_execute($stmt)){
+	    echo oci_error($stmt)['message'];
+	     }
 
 ?>

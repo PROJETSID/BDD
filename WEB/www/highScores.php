@@ -26,7 +26,7 @@
                 <!-- tableaux qui affichent les meilleurs joueurs (plus haut score) -->
                 <div id="tableau_classement_joueurs">
 			   <script language="javascript" type="text/javascript">
-				var b1 = document.getElementById("hs_jour");
+				/*var b1 = document.getElementById("hs_jour");
 				var b2 = document.getElementById("hs_semaine");
 				var b3 = document.getElementById("hs_tous");
 				var couleurInitiale = getComputedStyle(r).backgroundColor;
@@ -38,7 +38,7 @@
 				$tab=tab_score($reqJ);	
 				?>
 				b1.onclick = function() {
-				document.getElementById('tableau_classement_joueurs').style.backgroundColor='#00ff00';
+				document.getElementById('tableau_classement_joueurs').style.backgroundColor='red';
  			 	//r.style.backgroundColor= 'red';
 					}
 				b2.onclick = function() {
@@ -46,7 +46,7 @@
 					}
 				b3.onclick = function() {
 				r.style.backgroundColor=couleurInitiale;
-					}
+					}*/
 			</script>
                 </div>
             </div>

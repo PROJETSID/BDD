@@ -7,7 +7,7 @@
 
 //Connexion à la base
 include("db/connect.php");
-
+include("test_connexion.php");
 
 // Requête qui récupère les infos du joueur connecté
 $requete_info_joueur = "SELECT J.experienceJ , Cat.nomCat, Cat.imageCat

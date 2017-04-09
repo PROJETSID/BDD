@@ -19,17 +19,20 @@
             //Connexion à la base
             include("db/connect.php");
             session_start();
+            include("test_connexion.php");
+
+            $pseudo = $_SESSION['pseudo_connex'];
 
 
 
             // Requête pour récupérer le niveau du joueur en mode monojoueur
              $get_niveau = "SELECT idNiveau FROM \"21400692\".Niveau 
-                        WHERE seuilExpN <= 500
-/*                        (
+                        WHERE seuilExpN <= 
+                       (
                                                 SELECT experiencej
                                                 FROM \"21400692\".joueur
-                                                WHERE pseudoj like 'testblabla' 
-                                                ) */
+                                                WHERE pseudoj = '$pseudo'
+                                                ) 
                         order by idNiveau";
             $pre_get_niveau = oci_parse($dbConn,$get_niveau);
             oci_execute($pre_get_niveau);
@@ -69,11 +72,6 @@
 
         echo "</select>";
         
-
-        //$selected_val = $_POST['niveau'];  // On stocke la variable de selectionner
-      //  $_SESSION['niveau'] = $selected_val;  // On la stocke dans une variable de session pour 
-                                //par la suite pouvoir réutiliser le niveau
-
         ?>
 
 
