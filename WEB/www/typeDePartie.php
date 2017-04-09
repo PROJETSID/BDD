@@ -10,9 +10,12 @@
         <link rel="stylesheet" href="style.css" />
 		 <?php
 		    include("head.php");
-
+		    session_start();
 		    //Connexion à la base
 			include("db/connect.php");
+			include("test_connexion.php");
+
+
 		?>
 
 
