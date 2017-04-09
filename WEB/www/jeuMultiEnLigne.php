@@ -1,6 +1,5 @@
-<!--Code selecton du niveau en mono-joueur-->
-
 <!DOCTYPE html>
+
 
 <html>
 
@@ -8,31 +7,16 @@
 
         <meta charset="utf-8" />
 
-        <title>Authentification</title>
-
+        <title>Jeu</title>
         <link rel="stylesheet" href="style.css" />
-
-         <?php
-
-            // Inclusion du head
+	<?php
             include("head.php");
-            //Connexion à la base
             include("db/connect.php");
             session_start();
-            include("test_connexion.php");
 
-            $pseudo = $_SESSION['pseudo_connex'];
-
-
-
-            // Requête pour récupérer le niveau du joueur en mode monojoueur
+		// selectionner le niveaux accessibles
              $get_niveau = "SELECT idNiveau FROM \"21400692\".Niveau 
-                        WHERE seuilExpN <= 
-                       (
-                                                SELECT experiencej
-                                                FROM \"21400692\".joueur
-                                                WHERE pseudoj = '$pseudo'
-                                                ) 
+                        WHERE seuilExpN <= 500
                         order by idNiveau";
             $pre_get_niveau = oci_parse($dbConn,$get_niveau);
             oci_execute($pre_get_niveau);
@@ -41,18 +25,26 @@
 
 
     </head>
-
-
+	
     <body>
-
-
-        <div id="mettre_au_milieu_de_la_page">
-            <div id="grille_des_niveaux">
+	
+	<div id="mettre_au_milieu_de_la_page">
+	<div id="high_scores">
+			<div id="menu_choix_hs">
+                    		<a id="hs_jour" href="">Joueur1 : Pseudo J1</a>
+                    		<a id="hs_semaine" href=""> VERSUS </a>
+                    		<a id="hs_tous" href="">Joueur2 : Pseudo J2</a>
+                	</div></br>
+			<div id="menu_choix_hs" ;>
+                    		<p><i>Liste des niveaux accessibles au joueur le moins expérimenté</i></p>
+                	</div></br></br></br>
+		<div id="mettre_au_milieu_de_la_page">
+        	<div id="grille_des_niveaux">
 
         
-    <form method="post" action="jeu.php">
+		<form method="post" action="jeu.php">
 
-       <label for="niveau"> Selectionnez un niveau </label><br/>
+       		<label for="niveau"> Selectionnez un niveau </label><br/>
 
         <?php
 
@@ -71,21 +63,21 @@
         }
 
         echo "</select>";
-        
+
         ?>
 
+        	<input type='submit' value="Commencer" />
 
-        <input type='submit' value="Commencer" />
-
-    </form>
+ 	   	</form>
 
 
-</div>
+	</div>
         </div>
-
-        
+	
     </body>
 
 </html>
+
+
 
 

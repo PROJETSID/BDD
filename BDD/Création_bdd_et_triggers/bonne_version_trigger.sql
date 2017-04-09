@@ -373,9 +373,9 @@ CREATE OR REPLACE TRIGGER tbi_Partie
 
 
 -- PROCEDURE les lignes doivent etre rejouees dans l'ordre
-CREATE OR REPLACE PROCEDURE Rejouer(PidJoueur Joueur.idJoueur%TYPE,
+CREATE OR REPLACE FUNCTION Rejouer(PidJoueur Joueur.idJoueur%TYPE,
   Pidpartie Partie.idPartie%TYPE)
-  IS
+  RETURN varchar2 AS
     --une ligne
     CURSOR C1 IS
       SELECT L.idlignel, L.numerol, L.tempslignel, L.nbindicerougel,L.nbindiceblancl
@@ -392,23 +392,29 @@ CREATE OR REPLACE PROCEDURE Rejouer(PidJoueur Joueur.idJoueur%TYPE,
       AND PJ.idbille = b.idBille
       ORDER BY Pj.positionBilleLigne
       ;
+      retour Varchar2(32767);
   BEGIN
+  retour := '';
     FOR C1_ligne IN C1
     LOOP
     -- Affichage de l'ID de la ligne
-      DBMS_OUTPUT.PUT_LINE(C1_ligne.idLigneL);
+    --ERREUR !
+      retour := retour + to_char(C1_ligne.idLigneL) + ' ';
       
       -- Affichage de la position de la bille, de l'id de la bille 
       --- ainsi que de son URL
       FOR C2_LIGNE IN C2(C1_ligne.idLigneL)
       LOOP
-        DBMS_OUTPUT.PUT_LINE(C2_ligne.positionbilleligne);
-         DBMS_OUTPUT.PUT_LINE(C2_ligne.idBille);
-          DBMS_OUTPUT.PUT_LINE(C2_ligne.urlB);
+        retour := retour + C2_ligne.positionbilleligne + ' ';
+        retour := retour + C2_ligne.idBille + ' ';
+        retour := retour + C2_ligne.urlB + ' ';
       END LOOP ;
     END LOOP ;
+    return retour;
   END ;
 /
+
+drop procedure Rejouer;
 
 -- Code : OK !! 
 

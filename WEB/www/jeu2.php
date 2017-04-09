@@ -7,7 +7,7 @@
 
 //Connexion à la base
 include("db/connect.php");
-
+include("test_connexion.php");
 
 ?>
 
