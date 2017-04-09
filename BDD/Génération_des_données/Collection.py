@@ -8,14 +8,14 @@ def insertion_Collection(idCollection, nomCol, nbBillesCol, difficulté):
     return insert_into
 
 #les 10 collections existantes
-col_1 = [1,'Gris',4,'paisible']
-col_2 = [2,'Rayures',4,'paisible']
-col_3 = [3,'Couleurs',6,'facile']
-col_4 = [4,'Formes',6,'facile']
-col_5 = [5,'Politiques',6,'modérée']
-col_6 = [6,'Planètes',6,'modérée']
-col_7 = [7,'Psychédélique',6,'difficile']
-col_8 = [8,'Planètes',10,'difficile']
+col_1 = [1,'Gris',6,'paisible']
+col_2 = [2,'Rayures',6,'paisible']
+col_3 = [3,'Couleurs',8,'facile']
+col_4 = [4,'Formes',8,'facile']
+col_5 = [5,'Politiques',8,'modérée']
+col_6 = [6,'Planètes',8,'modérée']
+col_7 = [7,'Psychédélique',8,'difficile']
+col_8 = [8,'Planètes',8,'difficile']
 col_9 = [9,'Arbres',10,'cauchemardesque']
 col_10 = [10,'Yeux',10,'cauchemardesque']
 
