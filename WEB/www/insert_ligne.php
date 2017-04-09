@@ -22,26 +22,6 @@ oci_bind_by_name($stmt, ':idpartie', $idPartie);
 oci_bind_by_name($stmt, ':idjoueur', $joueur);
 	 if(!oci_execute($stmt)){
 	    echo oci_error($stmt)['message'];
-	      echo 'Marche pas'; 
-	     }else{
-		echo 'ça marche !';
-};
-
-
-
-
-/*
-//Envoi de la requête
- $req_l = oci_parse($dbConn, $requete_ligne);
-
- if (!oci_execute($req_l) ){
-     $err = oci_error($req_l);
-  //Affichage du message d'erreur dans une fenêtre alert
-   	 echo $err['message'];
-  }else{
-     echo "Ca marche !"; 
-  };
-*/
- 
+	     }
 
 ?>

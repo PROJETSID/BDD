@@ -22,6 +22,7 @@
 $partie = $_POST['partie'];
 //echo $partie;
 
+
 //Selection des id_ligne de la partie 
 
 $req_rej_idligne = "SELECT IDLIGNEL , NUMEROL 
@@ -47,21 +48,23 @@ $req_idligne = oci_parse($dbConn,$req_rej_idligne);
 
 
 	?>
+
+<?php echo "Partie n° : $partie  </br>"; ?>
 	<div id="grilleJeu">
 	</div>
 	<div id="mettre_au_milieu_de_la_page">
 	<table id = "table_niveau">
 
-	
-
 
 			<?php
+
+
 			for ($i = 0; $i < sizeof($idligne);$i++){
 				echo "<tr>";
 
 				//echo $i; 
 				// Selection des urls pour la ligne
-					$req_urlb_ligne = "SELECT URLB FROM \"21400692\".BILLE, \"21400692\".PROPOSITION_JOUEUR 
+				$req_urlb_ligne = "SELECT URLB FROM \"21400692\".BILLE, \"21400692\".PROPOSITION_JOUEUR 
 				WHERE BILLE.IDBILLE = PROPOSITION_JOUEUR.idbille 
 				AND PROPOSITION_JOUEUR.idlignel = $idligne[$i]
 				ORDER BY PROPOSITION_JOUEUR.POSITIONBILLELIGNE "; 
@@ -90,37 +93,17 @@ $req_idligne = oci_parse($dbConn,$req_rej_idligne);
 			?>
 
 
-
-
-
-			<?php
-			/*	$nbLigne = 10 ;
-				$nbEmpl = 8;
-				$dt = new DateTime("now");
-				for ($ii = 1 ; $ii <=$nbLigne ; $ii++){
-					echo "<tr>";			
-					for ($j = 1; $j <= $nbEmpl;$j++){
-						//if ($dt+5 > new DateTime("now"))
-							if ($j<5){
-							echo "<td><img src=\"images"."/"."2.jpg\" width=\"40\"/></td>";
-							$dt= new DateTime("now");
-							}
-							else { echo "<td><img src=\"images"."/"."4.jpg\" width=\"40\"/></td>"; }*/
-					/*echo"<script language=\"javascript\">";
-						echo "setTimeout(\" "<td><img src=\"images"."/"."2.jpg\" width=\"40\"/></td>\".",1000);
-						echo"</script>"; 
-							//$dt= new DateTime("now");*/
-					/*}
-
-						//sleep(1);
-				echo "</tr>";	
-								
-				}*/
-
-
-			?> 
 	</table>
+
+	
 	</div>
+
+
+
+
+
+
+
 
 </body>
 </html>

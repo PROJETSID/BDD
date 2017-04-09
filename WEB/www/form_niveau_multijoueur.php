@@ -8,14 +8,20 @@
 
         <meta charset="utf-8" />
 
-        <title>Authentification</title>
+        <title>Niveau</title>
         <link rel="stylesheet" href="style.css" />
          <?php
 
             // Inclusion du head
             include("head.php");
+
             //Connexion à la base
             include("db/connect.php");
+            include("test_connexion.php");
+            include("test_connexion2.php");
+
+            $pseudo = $_SESSION['pseudo_connex'] ; 
+            $pseudo2 = $_SESSION['pseudo_joueur2'] ;
 
 
           // Requête pour récupérer le niveau du joueur
@@ -23,8 +29,8 @@
                             WHERE seuilExpN  <= (
                                                 SELECT min(experiencej)
                                                 FROM \"21400692\".joueur
-                                                WHERE pseudoj like 'testblabla' 
-                                                OR pseudoj like  'Joueur27'
+                                                WHERE pseudoj like '$pseudo' 
+                                                OR pseudoj like  '$pseudo2'
                                                 ) 
                             ORDER BY idNiveau";
             $pre_get_niveau = oci_parse($dbConn,$get_niveau);
@@ -43,7 +49,7 @@
             <div id="grille_des_niveaux">
 
         
-    <form method="post" action="jeu.php">
+    <form method="post" action="jeuMulti.php">
 
        <label for="niveau">Selectionnez un niveau </label><br/>
        Seuls les niveaux du joueur ayant la plus petite expérience sont affichés <br/>
@@ -55,7 +61,7 @@
             echo oci_error($pre_get_niveau);
         }
 
-        echo "<select name='niveau' size='1'>";
+        echo "<select id='niveaumulti' name='niveaumulti' size='1'>";
 
         echo "<option value='choisir un niveau' id='to_hide'> Choisir un niveau </option>";
 

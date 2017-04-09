@@ -201,7 +201,7 @@ $req_select_combi = oci_parse($dbConn,$Requete_select_combi);
 
         <meta charset="utf-8" />
 
-        <title>JeuD</title>
+        <title>Mastermind monojoueur</title>
         <link rel="stylesheet" href="style.css" />
 		<?php
 		    include("head.php");
@@ -510,7 +510,6 @@ $.post('insert_ligne.php', {numeroL: nbLignes,
 $.post('insert_proposition_joueur.php', {
 	idPartie : idPartie, nbBilles : tableau.rows[0].cells.length , 
 	positionBilleLigne :  position, 
-	//idligne : idligne, 
 	idbilles : coool
 }).done(function(data) {
     alert(data);

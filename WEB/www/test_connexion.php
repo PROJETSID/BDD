@@ -1,3 +1,5 @@
+<!-- Test de connexion pour le joueur 1-->
+
 <?php
 
 include("db/connect.php");
