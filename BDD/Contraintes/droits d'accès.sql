@@ -27,16 +27,26 @@ REVOKE update, delete, index, references ON Bille  FROM "21603593", "21605127", 
 REVOKE update, delete, index, references ON Collection  FROM "21603593", "21605127", "21607258";
 
 --compte utilisateur utilisé par le site pour se connecter à la BD
-REVOKE update, delete, index, references ON Composer FROM "21605127";
-REVOKE update, delete, index, references ON Jouer FROM "21605127";
+REVOKE update, insert, delete, index, references ON Composer FROM "21605127";
+REVOKE update, insert, delete, index, references ON Jouer FROM "21605127";
 REVOKE delete, index, references ON Proposition_Joueur FROM "21605127";
-REVOKE update, delete, index, references ON Debloquer FROM "21605127";
-REVOKE update, delete, index, references ON Combinaison FROM "21605127";
-REVOKE delete, index, references ON Ligne FROM "21605127";
-REVOKE delete, index, references ON Partie FROM "21605127";
-REVOKE update, delete, index, references ON Joueur FROM "21605127";
-REVOKE update, delete, index, references ON Niveau FROM "21605127";
-REVOKE update, delete, index, references ON CategorieJoueur FROM "21605127";
-REVOKE update, delete, index, references ON Historique  FROM "21605127";
-REVOKE update, delete, index, references ON Bille  FROM "21605127";
-REVOKE update, delete, index, references ON Collection  FROM "21605127";
+REVOKE update, insert, delete, index, references ON Debloquer FROM "21605127";
+REVOKE update, insert, delete, index, references ON Combinaison FROM "21605127";
+REVOKE delete, insert, index, references ON Ligne FROM "21605127";
+REVOKE delete, insert, index, references ON Partie FROM "21605127";
+REVOKE update, insert, delete, index, references ON Joueur FROM "21605127";
+REVOKE update, insert, delete, index, references ON Niveau FROM "21605127";
+REVOKE update, insert, delete, index, references ON CategorieJoueur FROM "21605127";
+REVOKE update, insert, delete, index, references ON Historique  FROM "21605127";
+REVOKE update, insert, delete, index, references ON Bille  FROM "21605127";
+REVOKE update, insert, delete, index, references ON Collection  FROM "21605127";
+
+
+
+GRANT EXECUTE ON HIGHSCORETOUS TO "21605127";
+GRANT EXECUTE ON INSERTION_JOUEUR TO "21605127";
+GRANT EXECUTE ON INSERTION_LIGNE TO "21605127";
+GRANT EXECUTE ON INSERTION_PARTIE TO "21605127";
+GRANT EXECUTE ON INSERTION_PARTIE_MULTI TO "21605127";
+GRANT EXECUTE ON P_CREATION_COMBINAISON TO "21605127";
+
