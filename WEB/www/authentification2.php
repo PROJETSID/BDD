@@ -57,7 +57,6 @@
                <p id = "text_err_connex">Le compte n'existe pas</p>
             </form>
 
-        <!-- comment gérer la double connexion ??? Bon chance-->
         </div>
 
 		

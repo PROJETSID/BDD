@@ -20,62 +20,45 @@
             include("db/connect.php");
             session_start();
 
-
-
             // Requête pour récupérer le niveau du joueur en mode monojoueur
              $req = "SELECT pseudoJ FROM \"21400692\".Joueur";
             $parsereq = oci_parse($dbConn,$req);
             oci_execute($parsereq);
 
         ?>
-
-
     </head>
 
-
     <body>
-
 
         <div id="mettre_au_milieu_de_la_page">
             <div id="grille_des_niveaux">
 
-        
-    <form method="post" action="jeuMultiEnLigne.php">
+                <form method="post" action="jeuMultiEnLigne.php">
 
-       <label for="niveau"> Selectionnez un niveau </label><br/>
+                   <label for="niveau"> Selectionnez un niveau </label><br/>
 
-        <?php
+                    <?php
+                        if(!oci_execute($parsereq))
+                        {
+                            echo oci_error($parsereq);
+                        }
+                        echo "<select id='niveau' name='niveau' size='1'>";
+                        echo "<option value='Sélectionnez un Joueur' id='to_hide'> Sélectionnez un Joueur </option>";
+                        while (oci_fetch($parsereq))
+                        {
+                        echo "<option  value=" . oci_result($parsereq,1) . ">" . oci_result($parsereq,1) . "</option>";
+                        }
+                        echo "</select>";
+                        
+                        //$selected_val = $_POST['niveau'];  // On stocke la variable de selectionner
+                      //  $_SESSION['niveau'] = $selected_val;  // On la stocke dans une variable de session pour 
+                                                //par la suite pouvoir réutiliser le niveau
 
-        if(!oci_execute($parsereq))
-        {
-            echo oci_error($parsereq);
-        }
+                    ?>
+                    <input type='submit' value="Défier" />
 
-        echo "<select id='niveau' name='niveau' size='1'>";
-
-        echo "<option value='Sélectionnez un Joueur' id='to_hide'> Sélectionnez un Joueur </option>";
-
-        while (oci_fetch($parsereq))
-        {
-        echo "<option  value=" . oci_result($parsereq,1) . ">" . oci_result($parsereq,1) . "</option>";
-        }
-
-        echo "</select>";
-        
-
-        //$selected_val = $_POST['niveau'];  // On stocke la variable de selectionner
-      //  $_SESSION['niveau'] = $selected_val;  // On la stocke dans une variable de session pour 
-                                //par la suite pouvoir réutiliser le niveau
-
-        ?>
-
-
-        <input type='submit' value="Défier" />
-
-    </form>
-
-
-</div>
+                </form>
+            </div>
         </div>
 
         

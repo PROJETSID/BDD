@@ -43,33 +43,31 @@ session_start(); // A integrer afin d'avoir accès aux variables de sessions
         <div id="mettre_au_milieu_de_la_page">
 			<div id="grille_des_niveaux">
 			Selectionnez un niveau <?php echo $_SESSION['pseudo_connex']; ?>: 
-		<table id = "table_niveau">
-			<?php
+			<!-- on construit le tableau qui contient les 50 niveaux -->
+			<table id = "table_niveau">
+				<?php
 
-				$nbrow = 5 ;
-				$nbemp = 10;
-				$a = 0;
-				for ($ii = 1 ; $ii <=$nbrow ; $ii++)
+					$nbrow = 5 ;
+					$nbemp = 10;
+					$a = 0;
+					for ($ii = 1 ; $ii <=$nbrow ; $ii++)
 
+					{
+						echo "<tr>";			
+						for ($i = 1; $i <= $nbemp;$i++){
+							$a = $a+1;
+							echo "<td><a href=\"jeu.php\", class=\"button_niveau\" id=\"".$a."\">".$a."</a></td>";
+						}	
+					echo "</tr>";	
+									
+					}
 
-				{
-					echo "<tr>";			
-					for ($i = 1; $i <= $nbemp;$i++){
-						$a = $a+1;
-						echo "<td><a href=\"jeu.php\", class=\"button_niveau\" id=\"".$a."\">".$a."</a></td>";
-					}	
-				echo "</tr>";	
-								
-				}
+				?> 
+			</table>
 
+			</div>
+		</div>
 
-?> 
-</table>
-
-</div>
-        </div>
-
-		
     </body>
 
 </html>

@@ -3,10 +3,8 @@
 
 <?php
 
-
 //Connexion à la base
 include("db/connect.php");
-
 
 
 
@@ -21,17 +19,16 @@ if(isset($_POST['pass']))
 else $pass = ""; 
 
 
-
+//Requête SQL
 $sql = "BEGIN \"21400692\".INSERTION_JOUEUR(:pseudo, :pass); END;";
+//affectation des paramètres de la requête
 $stmt_id = oci_parse($dbConn, $sql);
 oci_bind_by_name($stmt_id, ':pseudo', $pseudo);
 oci_bind_by_name($stmt_id, ':pass', $pass);
 //oci_execute($stmt_id);
 
 
-
-
-
+// Envoi et execution de la requête SQL
 if (!oci_execute($stmt_id)){
 
    $err = oci_error($stmt_id);
@@ -51,16 +48,8 @@ if (!oci_execute($stmt_id)){
  ?>
 
 
-   
-
-
 <!-- Afficher le code de l'erreur
 echo htmlentities($err['code']);
 
 Afficher le message d'erreur
 echo htmlentities($err['message']);-->
-
-
-
-
-

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-
+<!-- Exécution de la procédure Rejouer(idJoueur,idPartie) -->
+<!-- Puis affichage des résultats retournées dans la grille de jeu (c'est à dire rejouer la partie) -->
 <html>
 
     <head>
@@ -19,7 +20,7 @@ include("db/connect.php");
 		    include("head.php");
 		    
 
-			    // On stocke toute les parties que le joueur a joué
+			// On stocke toute les parties que le joueur a joué
 			$requete_select_histo = "SELECT idpartie FROM \"21400692\".JOUER
 			WHERE idjoueur = (Select idjoueur from \"21400692\".JOUEUR where pseudoj = '$pseudo')";
 

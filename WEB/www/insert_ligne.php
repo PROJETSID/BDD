@@ -12,7 +12,7 @@ $idPartie = $_POST['idPartie'];
 $joueur= $_POST['joueur'];
 
 
-// INSERTION DE LA LIGNE
+// INSERTION DE LA LIGNE et gestion des erreurs
 $req_ligne = "BEGIN \"21400692\".INSERTION_LIGNE(:numL, :nbrouge, :nbblanc, :idpartie, :idjoueur);END;";
 $stmt = oci_parse($dbConn, $req_ligne);
 oci_bind_by_name($stmt, ':numL', $numeroL);

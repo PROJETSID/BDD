@@ -23,8 +23,6 @@
 
             $pseudo = $_SESSION['pseudo_connex'];
 
-
-
             // Requête pour récupérer le niveau du joueur en mode monojoueur
              $get_niveau = "SELECT idNiveau FROM \"21400692\".Niveau 
                         WHERE seuilExpN <= 
@@ -38,10 +36,7 @@
             oci_execute($pre_get_niveau);
 
         ?>
-
-
     </head>
-
 
     <body>
 
@@ -49,40 +44,30 @@
         <div id="mettre_au_milieu_de_la_page">
             <div id="grille_des_niveaux">
 
-        
-    <form method="post" action="jeu.php">
+                <!-- le joueur est redirigé vers la page jeu  contenant le niveau qu'il selectionne dans la grille de niveaux -->
+                <form method="post" action="jeu.php">
 
-       <label for="niveau"> Selectionnez un niveau </label><br/>
+                   <label for="niveau"> Selectionnez un niveau </label><br/>
 
-        <?php
+                    <?php
+                        if(!oci_execute($pre_get_niveau))
+                        {
+                            echo oci_error($pre_get_niveau);
+                        }
+                        echo "<select id='niveau' name='niveau' size='1'>";
+                        echo "<option value='choisir un niveau' id='to_hide'> Choisir un niveau </option>";
+                        while (oci_fetch($pre_get_niveau))
+                        {
+                        echo "<option  value=" . oci_result($pre_get_niveau,1) . ">" . oci_result($pre_get_niveau,1) . "</option>";
+                        }
+                        echo "</select>";
+                    ?>
+                    <input type='submit' value="Commencer" />
 
-        if(!oci_execute($pre_get_niveau))
-        {
-            echo oci_error($pre_get_niveau);
-        }
+                </form>
 
-        echo "<select id='niveau' name='niveau' size='1'>";
-
-        echo "<option value='choisir un niveau' id='to_hide'> Choisir un niveau </option>";
-
-        while (oci_fetch($pre_get_niveau))
-        {
-        echo "<option  value=" . oci_result($pre_get_niveau,1) . ">" . oci_result($pre_get_niveau,1) . "</option>";
-        }
-
-        echo "</select>";
-        
-        ?>
-
-
-        <input type='submit' value="Commencer" />
-
-    </form>
-
-
-</div>
+            </div>
         </div>
-
         
     </body>
 

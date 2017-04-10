@@ -90,7 +90,7 @@
 	/*séparé de l'élément au dessus par 20 pixels*/
 	margin-top: 20px;
 
-	/*background-color: orange;*/
+	background-color: orange;
 	/*dimensions*/
 	width: 50%;
 	height: 500px;
@@ -111,17 +111,17 @@
 		display: flex;
 		flex-direction: column;
 
-		/*background-color: grey;*/
+		background-color: grey;
 	}
 		#combinaison_à_trouver
 		{
 			flex: 1;
-			/*background-color: green;*/
+			background-color: green;
 		}
 		#grille_de_jeu
 		{
 			flex: 12;
-			/*background-color: grey;*/
+			background-color: grey;
 		}
 			tr 
 			{
@@ -133,7 +133,7 @@
 			{
 				width: 30px;
 				height: 30px;
-				/*background-color: pink;*/
+				background-color: pink;
 			}
 	#grilleJeu
 	{
@@ -152,22 +152,22 @@
 		display: flex;
 		flex-direction: column;
 
-		/*background-color: purple;*/
+		background-color: purple;
 	}
 		#timer
 		{
 			flex: 1;
-			/*background-color: cyan;*/
+			background-color: cyan;
 		}
 		#score_joueur
 		{
 			flex: 1;
-			/*background-color: pink;*/
+			background-color: pink;
 		}
 		#bille_à_placer
 		{
 			flex: 2;
-			/*background-color: purple;*/
+			background-color: purple;
 		}
 
 
@@ -275,5 +275,3 @@
 		width: 100px;
 		height: 200px;
 	}
-
-/*utiliser des classes (plutôt que des id) pour factoriser le code ?! Bon chance*/

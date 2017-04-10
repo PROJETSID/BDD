@@ -16,8 +16,6 @@
     <body>
 
     <!-- page de début de navigation par défaut -->
-    <!-- faire que la page authentification soit la première page par défaut -->
-
 
     </body>
 

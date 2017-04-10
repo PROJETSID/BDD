@@ -54,56 +54,37 @@ $req_idligne = oci_parse($dbConn,$req_rej_idligne);
 	</div>
 	<div id="mettre_au_milieu_de_la_page">
 	<table id = "table_niveau">
-
-
 			<?php
+				for ($i = 0; $i < sizeof($idligne);$i++){
+					echo "<tr>";
 
+					//echo $i; 
+					// Selection des urls pour la ligne
+					$req_urlb_ligne = "SELECT URLB FROM \"21400692\".BILLE, \"21400692\".PROPOSITION_JOUEUR 
+					WHERE BILLE.IDBILLE = PROPOSITION_JOUEUR.idbille 
+					AND PROPOSITION_JOUEUR.idlignel = $idligne[$i]
+					ORDER BY PROPOSITION_JOUEUR.POSITIONBILLELIGNE "; 
 
-			for ($i = 0; $i < sizeof($idligne);$i++){
-				echo "<tr>";
+						$req_urlb = oci_parse($dbConn,$req_urlb_ligne);
 
-				//echo $i; 
-				// Selection des urls pour la ligne
-				$req_urlb_ligne = "SELECT URLB FROM \"21400692\".BILLE, \"21400692\".PROPOSITION_JOUEUR 
-				WHERE BILLE.IDBILLE = PROPOSITION_JOUEUR.idbille 
-				AND PROPOSITION_JOUEUR.idlignel = $idligne[$i]
-				ORDER BY PROPOSITION_JOUEUR.POSITIONBILLELIGNE "; 
-
-					$req_urlb = oci_parse($dbConn,$req_urlb_ligne);
-
-					 if(!oci_execute($req_urlb)){
-		     			echo oci_error($req_nb_billes);
-	      				//echo 'Marche pas'; 
-	     				}else{
-						//echo 'ça marche !';
-						while(oci_fetch($req_urlb)){
-						//On stocke les idligne dans une liste
-						$urlb = oci_result($req_urlb, 'URLB'); 
-						echo "<td>";
-						echo "<img src=\"images/$urlb\"/>";
-						echo "</td>";
-	     				};
-
-	    					 };
-
-				echo "</tr>";
-				//sleep(5);
-						}
-
+						 if(!oci_execute($req_urlb)){
+			     			echo oci_error($req_nb_billes);
+		      				//echo 'Marche pas'; 
+		     				}else{
+							//echo 'ça marche !';
+							while(oci_fetch($req_urlb)){
+								//On stocke les idligne dans une liste
+								$urlb = oci_result($req_urlb, 'URLB'); 
+								echo "<td>";
+								echo "<img src=\"images/$urlb\"/>";
+								echo "</td>";
+		     				};
+		    			};
+					echo "</tr>";
+					//sleep(5);
+				}
 			?>
-
-
-	</table>
-
-	
+		</table>
 	</div>
-
-
-
-
-
-
-
-
 </body>
 </html>

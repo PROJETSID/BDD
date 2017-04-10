@@ -25,68 +25,47 @@ if (!oci_execute($sql) ){
    echo" alert(\" ".htmlentities($err['message'])." \") ;";
    echo "history.back();";
    echo"</script>";
-}
-else { 
+}else { 
    //Lecture des lignes du résultats
    while( oci_fetch($sql) )
    {
-    $experience  = oci_result($sql, 1); 
-    $nomcat  = oci_result($sql, 2); 
-    $imagecat   = oci_result($sql, 3); 
+      $experience  = oci_result($sql, 1); 
+      $nomcat  = oci_result($sql, 2); 
+      $imagecat   = oci_result($sql, 3); 
    }
-      
-         };
+};
    
 
-
-
-
-
-
 ?>
-
-
 <html>
-
     <head>
-
         <meta charset="utf-8" />
-
         <title>Jeu</title>
         <link rel="stylesheet" href="style.css" />
 		<?php
 		    include("head.php");
 		?>
-
-
-
     </head>
 
-
-    <!-- BODY -->
-
     <body >
+      <div>
+        Bienvenue dans ton profil 
+      </div>
 
-    <div>
-    Bienvenue dans ton profil 
-    </div>
+      <div>
+          Expérience : <?php echo  $experience ; ?>
+      </div>
 
-    <div>
-        Expérience : <?php echo  $experience ; ?>
-    </div>
+      <div>
+      Catégorie : <?php echo $nomcat ; ?>
+      </div>
 
-
-<div>
-    Catégorie : <?php echo $nomcat ; ?>
-    </div>
-
-
-    <div>
-       <img src = "<?php echo $imagecat ; ?>">
-       <?php echo $imagecat ?>
-    </div>
+      <div>
+         <img src = "<?php echo $imagecat ; ?>">
+         <?php echo $imagecat ?>
+      </div>
 
 
-        </body>
+    </body>
 
 </html>
