@@ -1,0 +1,279 @@
+
+
+/*Cours Open Classroom sur les Flex*/
+/*https://openclassrooms.com/courses/apprenez-a-creer-votre-site-web-avec-html5-et-css3/la-mise-en-page-avec-flexbox*/
+
+
+/*mise en page commune à toutes les pages*/
+#mettre_au_milieu_de_la_page
+{
+	/*mise en page flex*/
+    display: flex;
+    /*éléments les uns à la suite des autres*/
+    flex-wrap: wrap;
+    /*centre le contenu*/
+    justify-content: center;
+}
+
+#logo
+{
+	/*mise en page flex*/
+    display: flex;
+    /*centre le contenu*/
+    justify-content: center;
+}
+
+
+/*menu du site*/
+.menu_choix_0 {
+	/*centre le texte au milieu du bouton*/
+	text-align: center;
+
+	/*dimensions du bouton*/
+	width: 20%;
+	height: 40px;
+
+	background-color: grey;
+}
+
+.menu_choix_1 {
+	/*centre le texte au milieu du bouton*/
+	text-align: center;
+
+	/*dimensions du bouton*/
+	width: 20%;
+	height: 40px;
+
+	background-color: red;
+}
+.menu_choix_2 {
+	text-align: center;
+
+	background-color: blue;
+
+	width: 20%;
+	height: 40px;
+
+}
+.menu_choix_3 {
+	text-align: center;
+
+	background-color: green;
+
+	width: 20%;
+	height: 40px;
+}
+
+
+
+.menu_choix_4 {
+	text-align: center;
+
+	background-color: yellow;
+
+	width: 20%;
+	height: 40px;
+}
+
+
+
+/*page Jeu*/
+#espace_de_jeu
+{
+	/*mise en page flex*/
+	display: flex;
+	/*éléments en ligne*/
+	flex-direction: row;
+
+	/*centre au milieu de la page*/
+	align-self: center;
+	/*séparé de l'élément au dessus par 20 pixels*/
+	margin-top: 20px;
+
+	/*background-color: orange;*/
+	/*dimensions*/
+	width: 50%;
+	height: 500px;
+}
+	#grille_des_niveaux
+	{
+		margin-top: 20px;
+
+		background-color: red;
+
+		width: 60%;
+		height: 200px;
+	}
+	#grille_de_jeu_et_combinaison
+	{
+		flex: 1;
+		
+		display: flex;
+		flex-direction: column;
+
+		/*background-color: grey;*/
+	}
+		#combinaison_à_trouver
+		{
+			flex: 1;
+			/*background-color: green;*/
+		}
+		#grille_de_jeu
+		{
+			flex: 12;
+			/*background-color: grey;*/
+		}
+			tr 
+			{
+			   border: 1px solid black;
+			   	width: 100%;
+			}
+
+			td
+			{
+				width: 30px;
+				height: 30px;
+				/*background-color: pink;*/
+			}
+	#grilleJeu
+	{
+		margin-top: 20px;
+		margin-right: 300px;
+		margin-left: 300px;
+
+		background-color: red;
+
+		height: 200px;
+	}
+	#fonctionnalités
+	{
+		flex: 1;
+		
+		display: flex;
+		flex-direction: column;
+
+		/*background-color: purple;*/
+	}
+		#timer
+		{
+			flex: 1;
+			/*background-color: cyan;*/
+		}
+		#score_joueur
+		{
+			flex: 1;
+			/*background-color: pink;*/
+		}
+		#bille_à_placer
+		{
+			flex: 2;
+			/*background-color: purple;*/
+		}
+
+
+/*page authentification*/
+#formulaire_authentification
+{
+	margin-top: 20px;
+	margin-right: 40px;
+	margin-bottom: 20px;
+
+	background-color: yellow;
+}
+
+#formulaire_connexion
+{
+	margin-top: 20px;
+	margin-left: 40px;
+	margin-bottom: 20px;
+
+	background-color: lightblue;
+}
+
+.text_authentification
+{
+	text-align: center;
+}
+
+.bouton_auth
+{
+	
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+
+}
+
+#text_err_connex
+{
+	display: none;
+}
+
+
+/*page high scores*/
+#high_scores
+{
+	display: flex;
+	flex-direction: column;
+
+	align-self: center;
+	margin-top: 20px;
+
+	width: 60%;
+	height: 400px;
+}
+	#menu_choix_hs
+	{
+		flex: 1;
+
+		display: flex;
+		flex-direction: row;
+
+		align-self: center;
+
+		width: 70%;
+		
+		background-color: pink;
+	}
+		#hs_jour
+		{
+			flex: 1;
+			text-align: center;
+
+			background-color: yellow;
+		}
+		#hs_semaine
+		{
+			flex: 1;
+			text-align: center;
+
+			background-color: magenta;
+		}
+		#hs_tous
+		{
+			flex: 1;
+			text-align: center;
+
+			background-color: cyan;
+
+		}
+	#tableau_classement_joueurs
+	{
+		flex: 5;
+
+		margin-top: 20px;
+
+		background-color: green;
+	}
+	#tableau_classement
+	{
+		flex: 5;
+
+		margin-top: 20px;
+
+		background-color: green;
+		width: 100px;
+		height: 200px;
+	}
+
+/*utiliser des classes (plutôt que des id) pour factoriser le code ?! Bon chance*/
