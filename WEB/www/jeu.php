@@ -202,7 +202,7 @@ function decompte()
 
         $.post('gestion_fin_partie_perdu.php', {idPartie : idPartie, idJoueur : idJoueur});
        // Redirection vers la page niveau
-        document.location.href = "http://localhost/mastermind/form_niveau.php";
+	        document.location.href = "http://localhost/mastermind/typeDePartie.php";
         }
  
     compte--;
@@ -476,7 +476,7 @@ $.post('insert_ligne.php', {numeroL: nbLignes,
     	alert('Vous avez trouvé la combinaison');
     	$.post('gestion_fin_partie.php', {idPartie : idPartie, idJoueur : idJoueur});
    
-		document.location.href = "http://localhost/mastermind/form_niveau.php";
+		document.location.href = "http://localhost/mastermind/typeDePartie.php";
     };
 
 

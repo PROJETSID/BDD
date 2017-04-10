@@ -211,9 +211,10 @@ function decompte()
  		alert('Vous avez perdu !');
         clearInterval(timer);
        // Redirection vers la page niveau
-       document.location.href = "http://localhost/mastermind/form_niveau_multijoueur.php";
+       document.location.href = "http://localhost/mastermind/typeDePartie.php";
+
         }
- 
+
     compte--;
 }
 var timer = setInterval('decompte()',1000);
@@ -401,7 +402,6 @@ function test_combi(){
     var ligne_jeu = document.getElementById(idligne).childNodes;
 
 
-    alert(ligne_jeu[1].childNodes[0].childNodes[0].src);
 	// Vecteurs pour stocker les couleurs et les positions
     var coool = [];
     var position = [];
@@ -412,7 +412,7 @@ function test_combi(){
     		coool.push(image_trunc);
     		position.push(i);
     };
-    alert(coool);
+
 
 
 
@@ -426,7 +426,6 @@ function test_combi(){
 		}
 		echo ']';
 	?>;
-alert(combi);
 
 
 
@@ -451,8 +450,6 @@ alert(combi);
     	} 
     };
 
-
- alert('Billes rouges : '+compteurrouge + ' '+ compteurblanc + 'billes blanches');
 
 
 
@@ -496,10 +493,11 @@ $.post('insert_ligne.php', {numeroL: nbLignes,
   	// FIN DE LA PARTIE
     if(compteurrouge == tableau.rows[0].cells.length){
     	alert('Vous avez trouvé la combinaison');
-    	$.post('gestion_fin_partie.php', {idPartie : idPartie, idJoueur : idJoueur}).done(function(data) {
-    alert(data);
-});
+    	$.post('gestion_fin_partie.php', {idPartie : idPartie, idJoueur : idJoueur});
+    	 document.location.href = "http://localhost/mastermind/typeDePartie.php";
     };  
+
+
   
 };
 
